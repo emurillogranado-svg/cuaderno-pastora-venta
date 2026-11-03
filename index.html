@@ -1,0 +1,1793 @@
+<title>Cuaderno de la Pastora</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: cuaderno de bolsillo para usar con la perra delante. Cabecera "silla" negra y fuego como el manto de una pastora alemana, fichas de truco, y pantallas completas de sesión con botones enormes para el pulgar. */
+:root{
+  --bg:#F1F2EC; --surface:#FFFFFF; --sunk:#E5E8DE; --ink:#1B1E17; --muted:#596052; --line:#D2D6C8;
+  --saddle:#211F1A; --saddle-ink:#F3EFE6; --saddle-muted:#BDB5A5;
+  --fuego:#C0702A; --fuego-ink:#8A4911; --fuego-soft:#F6E7D6;
+  --campo:#2D6943; --campo-soft:#DCEADF;
+  --rojo:#A3392B; --rojo-soft:#F5DEDA;
+  --v1:#C6E0CC; --v2:#7FB592; --v3:#2D6943;
+  --lienzo:#F4E9DA;
+  --perro-tan:#C98A4B; --perro-tan2:#A86F38; --perro-negro:#26201A; --perro-hocico:#3A2C20; --perro-oreja:#4A3524; --perro-oreja2:#2F241A; --lengua:#D9707A;
+  --suelo:#B9A88F; --trazo:#3D3226; --piel:#E2B48C; --pelo:#3D3226; --ropa:#4F5D73; --ropa2:#3E4A5D; --zapato:#2A2622;
+  --pelota:#C9D33E; --pelota2:#8F9A1E; --cuerda:#B04A3A; --caja:#B98B57; --puerta:#B58A5E; --premio:#8A4911; --manta:#7E9E86; --manta2:#647F6B; --correa:#A3392B; --burbuja:#FFFFFF;
+  --font-display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --font-body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --r:12px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#12140F; --surface:#1B1E17; --sunk:#242820; --ink:#ECEEE5; --muted:#A4AB98; --line:#343A2D;
+    --saddle:#0B0B09; --saddle-ink:#F3EFE6; --saddle-muted:#ADA594;
+    --fuego:#D98A45; --fuego-ink:#EDB07A; --fuego-soft:#3A2817;
+    --campo:#7DBE8F; --campo-soft:#1D3325;
+    --rojo:#E58A7C; --rojo-soft:#3A1F1A;
+    --v1:#23402C; --v2:#3F7552; --v3:#7DBE8F; --lienzo:#D6C8B3;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12140F; --surface:#1B1E17; --sunk:#242820; --ink:#ECEEE5; --muted:#A4AB98; --line:#343A2D;
+  --saddle:#0B0B09; --saddle-ink:#F3EFE6; --saddle-muted:#ADA594;
+  --fuego:#D98A45; --fuego-ink:#EDB07A; --fuego-soft:#3A2817;
+  --campo:#7DBE8F; --campo-soft:#1D3325;
+  --rojo:#E58A7C; --rojo-soft:#3A1F1A;
+  --v1:#23402C; --v2:#3F7552; --v3:#7DBE8F; --lienzo:#D6C8B3;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+button,input,textarea{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--fuego);outline-offset:2px;border-radius:6px}
+.wrap{max-width:640px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px 56px}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;line-height:1.1}
+.eyebrow{font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+@media (prefers-reduced-motion:no-preference){
+  button:active{transform:scale(.985)}
+  .ficha,.chip,.paso,.video,.filtro{transition:border-color .15s ease,background-color .15s ease}
+}
+
+/* Cabecera silla */
+.silla{position:relative;overflow:hidden;background:var(--saddle);color:var(--saddle-ink);border-radius:18px;padding:20px 20px 18px;isolation:isolate}
+.silla::after{content:"";position:absolute;z-index:-1;width:120px;height:120px;right:-50px;bottom:-70px;border-radius:50%;background:var(--fuego);opacity:.92}
+.silla::before{content:"";position:absolute;z-index:-1;width:150px;height:150px;right:-40px;top:-80px;border-radius:50%;background:var(--fuego);opacity:.35}
+.silla .eyebrow{color:var(--saddle-muted)}
+.silla h1{font-size:clamp(30px,8.5vw,42px);font-weight:800;font-stretch:112%;margin-top:6px;letter-spacing:-.01em}
+.ficha-perra{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:12px;font-size:15px;color:var(--saddle-muted)}
+.ficha-perra label{display:flex;align-items:center;gap:8px}
+.ficha-perra input{font-size:16px;color:var(--saddle-ink);background:transparent;border:0;border-bottom:1.5px dashed var(--saddle-muted);padding:2px;min-width:0;color-scheme:dark}
+#nombre{width:11ch}
+#nacimiento{width:18ch;max-width:100%}
+.ficha-perra input::placeholder{color:var(--saddle-muted);opacity:.8}
+.cuenta{margin-top:18px;display:flex;align-items:center;gap:8px 10px;flex-wrap:wrap}
+.cuenta strong{font-family:var(--font-display);font-size:34px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
+.cuenta>span{color:var(--saddle-muted);font-size:15px}
+.racha{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(243,239,230,.22);background:rgba(11,11,9,.35);border-radius:999px;padding:5px 11px;font-size:13px;font-weight:700;color:var(--saddle-ink)}
+.racha i{width:8px;height:8px;border-radius:50%;background:var(--fuego)}
+.palotes{display:grid;grid-template-columns:repeat(23,1fr);gap:3px;margin-top:10px;max-width:420px}
+.palotes i{display:block;height:14px;border-radius:3px;background:rgba(243,239,230,.16)}
+.palotes i.curso{background:var(--fuego)}
+.palotes i.hecho{background:#F3EFE6}
+.leyenda{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:12.5px;color:var(--saddle-muted)}
+.leyenda b{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+
+/* Esta semana */
+.semana-box{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.semana-box .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.semana-box h2{font-size:18px;font-weight:700}
+.semana-box .eyebrow{color:var(--fuego-ink)}
+.semana-box p{margin:6px 0 0;color:var(--muted);font-size:14.5px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{display:inline-flex;align-items:center;gap:7px;min-height:38px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--bg);cursor:pointer;font-size:14.5px;font-weight:700}
+.chip:hover{border-color:var(--fuego)}
+.acciones{display:grid;gap:8px;margin-top:14px}
+.entrenar{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:58px;border:0;border-radius:12px;background:var(--ink);color:var(--bg);padding:10px 16px;font-weight:700;font-size:16px;cursor:pointer;text-align:left}
+.entrenar>span:first-child{min-width:0}
+.entrenar small{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-weight:400;opacity:.78;font-size:13px;margin-top:2px}
+.entrenar .flecha{font-size:22px;line-height:1}
+.entrenar.sec{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.entrenar.sec small{opacity:1;color:var(--muted)}
+.completa{margin:0;font-size:14.5px;color:var(--campo);font-weight:700}
+.sync{margin-top:10px;font-size:12.5px;color:var(--muted)}
+.btn-sm{min-height:36px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--bg);font-size:13.5px;font-weight:700;cursor:pointer}
+
+/* Pestañas */
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:4px;margin:18px 0 6px;padding:6px 0;border-bottom:1px solid var(--line)}
+.tab{flex:1;min-height:44px;border:0;background:transparent;border-radius:10px;font-family:var(--font-display);font-weight:700;font-size:15px;color:var(--muted);cursor:pointer;padding:0 4px}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+
+/* Lista de trucos */
+.filtros{display:flex;gap:6px;overflow-x:auto;padding:4px 0 2px;margin-top:12px;scrollbar-width:none}
+.filtro{flex:none;min-height:36px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-weight:700;font-size:13.5px;cursor:pointer;font-variant-numeric:tabular-nums}
+.filtro[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.nivel{margin-top:22px}
+.nivel-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.nivel-head h2{font-size:15px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.nivel-head .n{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.nivel-nota{margin:2px 0 10px;color:var(--muted);font-size:14px}
+.fichas{display:grid;gap:8px}
+.ficha{display:grid;grid-template-columns:64px minmax(0,1fr) auto;align-items:center;gap:12px;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:8px 12px 8px 8px;cursor:pointer;min-height:62px}
+.ficha .der .marca{width:20px;height:20px}
+.lamina{display:block;background:var(--lienzo);border-radius:14px;padding:6px 8px 2px}
+.lamina svg,.mini svg{display:block;width:100%;height:auto}
+.mini{display:block;width:64px;border-radius:10px;background:var(--lienzo);padding:2px 3px 0}
+.det-lamina{margin-top:14px}
+.ficha:hover{border-color:var(--fuego)}
+.ficha .nm{display:block;font-weight:700;font-size:16.5px;line-height:1.25}
+.ficha .cue{display:block;color:var(--muted);font-size:13.5px;margin-top:2px}
+.ficha .der{display:flex;align-items:center;gap:8px}
+.ficha .flag{font-size:12px;font-weight:700;color:var(--fuego-ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.ficha .chev{color:var(--muted);font-size:20px;line-height:1}
+.vacio{margin:24px 0;color:var(--muted);text-align:center}
+.marca{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;flex:none}
+.marca.curso{border-color:var(--fuego);background:linear-gradient(90deg,var(--fuego) 50%,transparent 50%)}
+.marca.hecho{border-color:var(--campo);background:var(--campo)}
+.marca.hecho::after{content:"";width:6px;height:10px;border:solid var(--bg);border-width:0 2.5px 2.5px 0;transform:translateY(-1px) rotate(45deg)}
+.chip .marca{width:14px;height:14px;border-width:1.5px}
+.chip .marca.hecho::after{width:3px;height:6px;border-width:0 2px 2px 0}
+
+/* Plan */
+.plan-intro{color:var(--muted);margin:14px 0 4px}
+.semanas{display:grid;gap:10px;margin-top:12px}
+.sem{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.sem.actual{border:2px solid var(--fuego);padding:13px 15px}
+.sem-top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.sem h3{font-size:17px;font-weight:700}
+.sem h3 small{display:block;font-family:var(--font-body);font-weight:400;font-size:13px;color:var(--muted);letter-spacing:.02em}
+.sem p{margin:8px 0 0;font-size:14.5px;color:var(--muted)}
+.sem.actual .btn-sm{background:var(--fuego-soft);border-color:var(--fuego);color:var(--fuego-ink)}
+.barra{height:6px;border-radius:3px;background:var(--sunk);margin-top:10px;overflow:hidden}
+.barra i{display:block;height:100%;background:var(--campo);border-radius:3px}
+.barra-txt{font-size:12.5px;color:var(--muted);margin-top:4px;font-variant-numeric:tabular-nums}
+.sesion-tipo{margin-top:16px;background:var(--sunk);border-radius:var(--r);padding:14px 16px}
+.sesion-tipo h3{font-size:16px}
+.sesion-tipo ol{margin:8px 0 0;padding-left:22px}
+.sesion-tipo li{margin:4px 0}
+
+/* Diario */
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:14px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.tile b{display:block;font-family:var(--font-display);font-size:30px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.05}
+.tile span{font-size:13px;color:var(--muted)}
+.tile.dest{background:var(--saddle);border-color:var(--saddle);color:var(--saddle-ink)}
+.tile.dest span{color:var(--saddle-muted)}
+.tile.dest b{color:var(--saddle-ink)}
+.bloque{margin-top:22px}
+.bloque>h2{font-size:15px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.bloque>p{margin:2px 0 10px;color:var(--muted);font-size:14px}
+.mapa{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px}
+.mapa-grid{display:grid;grid-template-columns:16px repeat(8,minmax(0,1fr));gap:4px;align-items:center}
+.mapa-grid .dl{font-size:11px;color:var(--muted);text-align:center}
+.mapa-grid .wk{font-size:10px;color:var(--muted);text-align:center;font-variant-numeric:tabular-nums;white-space:nowrap}
+.cel{display:block;aspect-ratio:1;max-height:34px;border-radius:5px;background:var(--sunk)}
+.cel.n1{background:var(--v1)}
+.cel.n2{background:var(--v2)}
+.cel.n3{background:var(--v3)}
+.cel.fut{background:transparent;border:1px dashed var(--line)}
+.cel.hoy{outline:2px solid var(--fuego);outline-offset:1px}
+.mapa-ley{display:flex;align-items:center;gap:6px;justify-content:flex-end;margin-top:10px;font-size:12px;color:var(--muted)}
+.mapa-ley .cel{width:12px;height:12px;border-radius:3px}
+.logros{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.logro{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 8px;text-align:center}
+.sello{width:48px;height:48px;margin:0 auto 6px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:14px;border:2px dashed var(--line);color:var(--muted);font-variant-numeric:tabular-nums}
+.logro.ok .sello{border:3px solid var(--fuego);background:var(--fuego-soft);color:var(--fuego-ink)}
+.logro b{display:block;font-size:13px;line-height:1.2}
+.logro span{display:block;font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.3}
+.logro:not(.ok) b{color:var(--muted)}
+
+/* Guía */
+.claves{display:grid;gap:10px;margin-top:14px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+summary{list-style:none;cursor:pointer;padding:14px 16px;font-family:var(--font-display);font-weight:700;font-size:16.5px;display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:52px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:22px;color:var(--muted);font-weight:500}
+details[open] summary::after{content:"–"}
+summary small{display:block;font-family:var(--font-body);font-weight:400;font-size:13px;color:var(--muted)}
+.dc{padding:0 16px 16px;max-width:65ch}
+.dc p{margin:0 0 10px}
+.dc ul,.dc ol{margin:0 0 10px;padding-left:22px}
+.dc li{margin:5px 0}
+.dc .nota{font-size:14px;color:var(--muted)}
+.tres-d{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:4px 0 12px}
+.tres-d div{background:var(--sunk);border-radius:10px;padding:10px}
+.tres-d b{display:block;font-family:var(--font-display);font-size:15px}
+.tres-d span{font-size:13px;color:var(--muted)}
+.prob{display:grid;gap:12px}
+.prob div{border-left:3px solid var(--fuego);padding:2px 0 2px 12px}
+.prob b{display:block}
+.prob span{font-size:14.5px;color:var(--muted)}
+.aviso{background:var(--rojo-soft);border-radius:10px;padding:12px 14px;margin:0 0 10px}
+.aviso b{color:var(--rojo)}
+.escalera{display:grid;gap:6px;margin:4px 0 10px}
+.peldano{display:grid;grid-template-columns:86px minmax(0,1fr);gap:10px;align-items:start;padding:8px 10px;border-radius:10px;background:var(--sunk)}
+.peldano b{font-family:var(--font-display);font-size:14px}
+.peldano span{font-size:14px;color:var(--muted)}
+.peldano.p4{background:var(--fuego-soft)}
+.peldano.p4 b{color:var(--fuego-ink)}
+
+/* Detalle */
+.capa{position:fixed;inset:0;z-index:20;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch;padding-top:env(safe-area-inset-top,0px)}
+.capa .wrap{padding-bottom:24px}
+.det-bar{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.volver{min-height:44px;padding:8px 14px 8px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-weight:700;cursor:pointer}
+.det-nivel{color:var(--muted);font-size:13px}
+.det-titulo{margin-top:18px}
+.det-titulo h2{font-size:clamp(30px,9vw,44px);font-weight:800;font-stretch:115%;letter-spacing:-.01em}
+.orden{display:flex;flex-wrap:wrap;gap:8px 12px;margin-top:12px}
+.orden div{background:var(--saddle);color:var(--saddle-ink);border-radius:10px;padding:8px 12px;min-width:0}
+.orden div.g{background:var(--sunk);color:var(--ink)}
+.orden small{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--saddle-muted);font-weight:700}
+.orden div.g small{color:var(--muted)}
+.orden strong{font-size:18px}
+.orden div.g strong{font-size:15px;font-weight:700}
+.req{margin-top:12px;font-size:14.5px;color:var(--muted)}
+.req b{color:var(--ink)}
+.estado{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:16px;background:var(--sunk);padding:5px;border-radius:12px}
+.estado button{min-height:42px;border:0;border-radius:9px;background:transparent;font-weight:700;font-size:14px;cursor:pointer;color:var(--muted)}
+.estado button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.estado button[data-e="curso"][aria-pressed="true"]{color:var(--fuego-ink)}
+.estado button[data-e="hecho"][aria-pressed="true"]{color:var(--campo)}
+.det-sec{margin-top:24px}
+.det-sec>h3{font-size:14px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.pasos{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+.paso{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;align-items:start;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;cursor:pointer;font-size:16.5px;line-height:1.45}
+.paso .num{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:15px;background:var(--sunk);color:var(--muted);font-variant-numeric:tabular-nums}
+.paso.ya{color:var(--muted)}
+.paso.ya .num{background:var(--campo-soft);color:var(--campo)}
+.paso.aqui{border:2px solid var(--fuego);padding:11px 13px;background:var(--fuego-soft)}
+.paso.aqui .num{background:var(--fuego);color:#fff}
+.paso .aqui-tag{display:block;font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fuego-ink);margin-bottom:2px}
+.hint{font-size:13px;color:var(--muted);margin-top:8px}
+.videos{display:grid;gap:10px;margin-top:10px}
+.video{display:grid;grid-template-columns:116px minmax(0,1fr);gap:12px;align-items:center;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:8px 12px 8px 8px;min-height:76px}
+.video:hover{border-color:var(--fuego)}
+.pantalla{position:relative;aspect-ratio:16/9;width:100%;max-width:100%;border-radius:8px;background:var(--saddle);overflow:hidden}
+.pantalla::before{content:"";position:absolute;right:-20px;bottom:-30px;width:70px;height:70px;border-radius:50%;background:var(--fuego);opacity:.9}
+.pantalla::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-35%,-50%);border-style:solid;border-width:11px 0 11px 18px;border-color:transparent transparent transparent var(--saddle-ink)}
+.pantalla i{position:absolute;left:7px;top:5px;font-style:normal;font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--saddle-muted)}
+.video .vt{display:block;font-weight:700;font-size:15px;line-height:1.3}
+.video .vm{display:block;font-size:12.5px;color:var(--muted);margin-top:3px}
+.mas-videos{display:inline-block;margin-top:10px;font-size:14px;color:var(--muted)}
+.enlaces{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.btn-link{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:10px 16px;border-radius:12px;text-decoration:none;font-weight:700;border:1px solid var(--line);background:var(--surface)}
+.notas{display:grid;gap:10px;margin-top:20px}
+.nota-box{border-radius:var(--r);padding:12px 14px;background:var(--surface);border:1px solid var(--line)}
+.nota-box b{display:block;font-family:var(--font-display);font-size:14px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:2px}
+.nota-box.tip b{color:var(--campo)}
+.nota-box.ojo b{color:var(--fuego-ink)}
+.nota-box.cuid{background:var(--rojo-soft);border-color:transparent}
+.nota-box.cuid b{color:var(--rojo)}
+textarea#nota{width:100%;margin-top:10px;min-height:84px;resize:vertical;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:10px 12px;font-size:15.5px;line-height:1.45}
+.hist{margin-top:10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.hist svg{display:block;width:100%;height:auto}
+.hist .bar{fill:var(--fuego)}
+.hist .bar.ok{fill:var(--campo)}
+.hist .meta{stroke:var(--muted);stroke-dasharray:3 3;stroke-width:1}
+.hist .base{stroke:var(--line);stroke-width:1}
+.hist text{fill:var(--muted);font-size:9.5px;font-family:var(--font-body)}
+.hist text.ult{fill:var(--ink);font-weight:700}
+.hist-cap{font-size:13px;color:var(--muted);margin:6px 0 0}
+.hist-vacio{font-size:14px;color:var(--muted);margin:10px 0 0}
+.stats{margin-top:10px;font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.det-pie{position:sticky;bottom:0;z-index:2;background:var(--surface);border-top:1px solid var(--line);box-shadow:0 -6px 18px rgba(0,0,0,.08);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-top:12px;padding-bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+.pie-in{max-width:640px;margin:0 auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pie-paso{flex-basis:100%;font-size:13.5px;color:var(--muted);margin:0;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.pie-paso b{color:var(--fuego-ink)}
+.mins{display:flex;gap:6px}
+.mins button{min-width:52px;min-height:48px;border-radius:10px;border:1px solid var(--line);background:var(--bg);font-weight:700;cursor:pointer;font-variant-numeric:tabular-nums}
+.mins button[aria-pressed="true"]{border:2px solid var(--ink)}
+.go{flex:1;min-width:150px;min-height:48px;border:0;border-radius:12px;background:var(--ink);color:var(--bg);font-family:var(--font-display);font-weight:800;font-size:16px;cursor:pointer}
+
+/* Pantallas completas: sesión y repaso */
+[hidden]{display:none!important}
+.bienvenida{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:14px}
+.bienvenida p{margin:6px 0 0}
+.full{position:fixed;inset:0;z-index:30;background:var(--bg);display:flex;flex-direction:column;overflow-y:auto;padding-top:max(12px,env(safe-area-inset-top,0px));padding-bottom:max(14px,env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.full-in{max-width:560px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:14px;flex:1}
+.full-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.full-top .t{font-family:var(--font-display);font-weight:800;font-size:18px;min-width:0}
+.full-top .t small{display:block;font-family:var(--font-body);font-weight:400;font-size:13px;color:var(--muted)}
+.cerrar{min-height:44px;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-weight:700;cursor:pointer;flex:none}
+.pf-paso{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px;display:grid;grid-template-columns:44px minmax(0,1fr) 44px;gap:8px;align-items:center}
+.pf-paso small{display:block;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--fuego-ink);font-weight:700}
+.pf-paso p{margin:2px 0 0;font-size:18px;line-height:1.35}
+.nav{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--bg);font-size:22px;line-height:1;cursor:pointer}
+.nav:disabled{opacity:.3;cursor:default}
+.pf-reloj{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.reloj{font-family:var(--font-display);font-weight:800;font-size:64px;font-stretch:90%;font-variant-numeric:tabular-nums;line-height:1}
+.reloj.fin{color:var(--fuego-ink)}
+.pf-reloj button{min-height:44px;padding:6px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-weight:700;cursor:pointer}
+.puntos{display:flex;justify-content:center;gap:7px}
+.puntos i{width:16px;height:16px;border-radius:50%;background:var(--sunk);border:1.5px solid var(--line)}
+.puntos i.s{background:var(--campo);border-color:var(--campo)}
+.puntos i.n{background:var(--rojo-soft);border-color:var(--rojo)}
+.marcador-txt{text-align:center;font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums;margin-top:-6px}
+.marcador-txt strong{color:var(--ink);font-size:17px}
+.pf-msg{text-align:center;font-size:15px;color:var(--muted);min-height:22px}
+.pf-banner{display:flex;flex-direction:column;align-items:center;gap:8px;background:var(--campo-soft);border-radius:14px;padding:12px;text-align:center}
+.pf-banner b{color:var(--campo)}
+.pf-banner button,.pf-alerta button{min-height:44px;padding:8px 16px;border-radius:10px;border:0;background:var(--campo);color:var(--bg);font-weight:800;cursor:pointer}
+.pf-alerta{background:var(--fuego-soft);border-radius:14px;padding:12px;text-align:center;color:var(--fuego-ink);font-weight:700}
+.clic{display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;color:var(--muted);min-height:32px}
+.clic input{width:20px;height:20px;accent-color:var(--campo)}
+.grandes{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grandes button{min-height:112px;border-radius:18px;border:0;font-family:var(--font-display);font-weight:800;font-size:22px;cursor:pointer}
+.grandes .ok{background:var(--campo);color:var(--bg)}
+.grandes .no{background:var(--sunk);color:var(--ink);border:1px solid var(--line)}
+.grandes.tres{grid-template-columns:1fr 1fr}
+.grandes .salta{grid-column:1 / -1;min-height:48px;font-size:15px;background:transparent;border:1px solid var(--line);color:var(--muted)}
+.resumen{display:flex;flex-direction:column;gap:12px;align-items:stretch;text-align:center;margin-top:12px}
+.resumen .res{font-family:var(--font-display);font-weight:800;font-size:56px;font-variant-numeric:tabular-nums;line-height:1}
+.resumen p{margin:0;font-size:16.5px}
+.resumen .sub{color:var(--muted);font-size:14.5px}
+.resumen button{min-height:52px;padding:8px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-weight:700;font-size:16px;cursor:pointer}
+.resumen button.prim{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.cue-card{background:var(--saddle);color:var(--saddle-ink);border-radius:20px;padding:26px 18px;text-align:center;position:relative;overflow:hidden;isolation:isolate}
+.cue-card::after{content:"";position:absolute;z-index:-1;width:180px;height:180px;right:-70px;bottom:-100px;border-radius:50%;background:var(--fuego);opacity:.9}
+.cue-card .pide{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--saddle-muted);font-weight:700}
+.cue-card .cue{font-family:var(--font-display);font-size:clamp(38px,12vw,60px);font-weight:800;font-stretch:110%;line-height:1.05;margin:8px 0 6px}
+.cue-card .gesto{color:var(--saddle-muted);font-size:15px}
+.variacion{text-align:center;font-size:14.5px;color:var(--muted);margin:0}
+.variacion b{color:var(--ink)}
+.rep-opc{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.rep-opc p{margin:0 0 10px}
+.rep-opc .clic{justify-content:flex-start}
+.rep-lista{font-size:14.5px;color:var(--muted);text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.rep-lista b{color:var(--ink)}
+
+/* Hoy */
+.hoy{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:14px;color:var(--muted);flex-wrap:wrap}
+.hoy .dots{display:flex;gap:5px}
+.hoy .dots i{width:12px;height:12px;border-radius:50%;border:1.5px solid var(--line);background:var(--sunk)}
+.hoy .dots i.s{background:var(--campo);border-color:var(--campo)}
+.hoy b{color:var(--ink)}
+.hoy.ok b{color:var(--campo)}
+
+/* Revisión rápida */
+.tools{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-top:14px}
+.tools p{margin:0;font-size:13.5px;color:var(--muted)}
+.rap-grupo h3{font-size:13px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:4px 0 8px}
+.rap-lista{display:grid;gap:8px}
+.rap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px}
+.rap b{display:block;font-size:15.5px;line-height:1.25}
+.rap span{display:block;font-size:13px;color:var(--muted)}
+.seg{display:flex;background:var(--sunk);border-radius:10px;padding:3px;gap:2px}
+.seg button{min-height:38px;padding:0 10px;border:0;border-radius:8px;background:transparent;font-weight:700;font-size:13px;color:var(--muted);cursor:pointer;white-space:nowrap}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.seg button[data-e="curso"][aria-pressed="true"]{color:var(--fuego-ink)}
+.seg button[data-e="hecho"][aria-pressed="true"]{color:var(--campo)}
+.full .listo{position:sticky;bottom:0;min-height:52px;border:0;border-radius:12px;background:var(--ink);color:var(--bg);font-family:var(--font-display);font-weight:800;font-size:16px;cursor:pointer;margin-top:8px}
+
+/* Aguante */
+.aguante{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+.aguante button{min-height:44px;padding:6px 16px;border-radius:10px;border:0;background:var(--ink);color:var(--bg);font-weight:800;cursor:pointer}
+.aguante button.on{background:var(--fuego-soft);color:var(--fuego-ink);border:2px solid var(--fuego)}
+.ag-num{font-family:var(--font-display);font-weight:800;font-size:28px;font-variant-numeric:tabular-nums;min-width:4ch;text-align:center}
+.ag-meta{flex-basis:100%;text-align:center;font-size:13px;color:var(--muted)}
+.ag-meta b{color:var(--campo)}
+
+/* Dibujo en tarjetas de pedir */
+.cue-card .lamina{max-width:210px;margin:0 auto 12px;padding:4px 6px 0}
+
+/* Sitios */
+.sitios{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.sitio{min-height:42px;padding:6px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-weight:700;cursor:pointer}
+.sitio[aria-pressed="true"]{background:var(--campo);border-color:var(--campo);color:var(--bg)}
+.lugares{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--muted)}
+.lugares button{min-height:36px;padding:4px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-weight:700;font-size:13px;cursor:pointer}
+.lugares button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* Rutina */
+.rut-pool{display:grid;gap:8px}
+.rut-op{display:grid;grid-template-columns:28px 64px minmax(0,1fr);gap:10px;align-items:center;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:8px 12px;cursor:pointer;min-height:60px;width:100%}
+.rut-op.on{border:2px solid var(--fuego);padding:7px 11px;background:var(--fuego-soft)}
+.rut-n{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-display);font-weight:800;background:var(--sunk);color:var(--muted);font-variant-numeric:tabular-nums}
+.rut-op.on .rut-n{background:var(--fuego);color:#fff}
+.rut-t{font-weight:700;font-size:16px}
+.rut-t small{display:block;font-weight:400;color:var(--muted);font-size:13px}
+.rut-prog{display:flex;gap:6px;justify-content:center}
+.rut-prog i{width:28px;height:6px;border-radius:3px;background:var(--sunk)}
+.rut-prog i.s{background:var(--campo)}
+.rut-prog i.a{background:var(--fuego)}
+.grandes button:disabled{opacity:.45;cursor:default}
+
+/* Salud */
+.salud-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;display:grid;gap:12px}
+.fila-form{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+.fila-form label,.campos label{display:grid;gap:4px;font-size:13px;color:var(--muted);font-weight:700;min-width:0}
+.fila-form label{flex:1 1 120px}
+.campos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.fila-form input,.campos input,.campos select{min-height:44px;border:1px solid var(--line);border-radius:10px;background:var(--bg);padding:6px 10px;font-size:16px;color:var(--ink);min-width:0;width:100%;font-weight:400}
+.btn-prim{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 16px;border-radius:10px;border:1px solid var(--ink);background:var(--ink);color:var(--bg);font-weight:800;cursor:pointer;text-decoration:none;text-align:center}
+.btn-prim.sec{background:transparent;color:var(--ink);border-color:var(--line)}
+.rapidos{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--muted)}
+.rapidos button{min-height:36px;padding:4px 12px;border-radius:999px;border:1px solid var(--line);background:var(--bg);font-weight:700;font-size:13px;cursor:pointer}
+.registro{display:grid;gap:6px}
+.reg{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:8px 12px;background:var(--surface);border:1px solid var(--line);border-radius:10px;font-size:14.5px}
+.salud-card .reg{background:var(--bg)}
+.reg small{display:block;color:var(--muted);font-size:13px}
+.borrar{min-height:36px;padding:4px 10px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--muted);font-weight:700;font-size:13px;cursor:pointer}
+.borrar[data-ok="1"]{background:var(--rojo-soft);color:var(--rojo);border-color:var(--rojo)}
+.citas{display:grid;gap:8px}
+.cita{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line)}
+.cita b{display:block}
+.cita small{color:var(--muted);font-size:13px}
+.cita .cuando{font-weight:800;font-size:13.5px;text-align:right}
+.cita.vencida{border-left:4px solid var(--rojo)}
+.cita.vencida .cuando{color:var(--rojo)}
+.cita.pronto{border-left:4px solid var(--fuego)}
+.cita.pronto .cuando{color:var(--fuego-ink)}
+.peso-svg{display:block;width:100%;height:auto}
+.peso-svg text{fill:var(--muted);font-size:10px;font-family:var(--font-body)}
+.peso-svg .ult{fill:var(--ink);font-weight:700;font-size:11.5px}
+.peso-svg .banda{fill:var(--campo-soft)}
+.peso-svg .banda-t{fill:var(--campo);font-size:10px}
+.peso-svg .lin{fill:none;stroke:var(--fuego);stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
+.peso-svg .pt{fill:var(--surface);stroke:var(--fuego);stroke-width:2}
+.peso-svg .pt.u{fill:var(--fuego)}
+.peso-svg .eje{stroke:var(--line);stroke-width:1}
+.aviso-salud{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;margin-top:12px;padding:12px 14px;border-radius:var(--r);border:0;background:var(--rojo-soft);color:var(--ink);text-align:left;font-weight:700;font-size:15px;cursor:pointer}
+.aviso-salud small{display:block;font-weight:400;color:var(--muted);font-size:13px}
+.aviso-salud.pronto{background:var(--fuego-soft)}
+
+/* Familia y copia */
+.fam-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;display:grid;gap:10px}
+.fam-box p{margin:0;font-size:14.5px}
+.fam-box ol{margin:0;padding-left:20px;font-size:14.5px;color:var(--muted)}
+.fam-box .estado-fam{color:var(--campo);font-weight:800}
+.quien{margin-top:10px;display:grid;gap:6px}
+.quien h3{font-size:13px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:4px 0 2px}
+.quien-fila{display:flex;justify-content:space-between;gap:10px;padding:8px 12px;background:var(--surface);border:1px solid var(--line);border-radius:10px;font-variant-numeric:tabular-nums}
+#backup-txt{width:100%;min-height:120px;margin-top:10px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:10px 12px;font-size:12.5px;font-family:ui-monospace,Menlo,Consolas,monospace}
+.confirmar{margin-top:10px;background:var(--fuego-soft);border-radius:var(--r);padding:12px 14px;display:grid;gap:10px}
+.confirmar p{margin:0}
+.botones2{display:flex;gap:8px;flex-wrap:wrap}
+.error-txt{margin:10px 0 0;color:var(--rojo);font-weight:700;font-size:14px}
+.ok-txt{margin:10px 0 0;color:var(--campo);font-weight:700;font-size:14px}
+
+/* Compartir */
+#resumen-txt{width:100%;min-height:150px;margin-top:10px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:10px 12px;font-size:14px}
+
+@media (max-width:380px){
+  .video{grid-template-columns:92px minmax(0,1fr)}
+  .seg button{padding:0 7px}
+  .tab{font-size:13.5px}
+  .campos{grid-template-columns:1fr}
+  .tres-d{grid-template-columns:1fr}
+  .reloj{font-size:54px}
+  .logros{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grandes button{min-height:96px}
+}
+</style>
+
+<div class="wrap" id="app">
+  <header class="silla">
+    <div class="eyebrow" id="edad">Pastora alemana · casi 1 año</div>
+    <h1 id="titulo">Cuaderno de tu pastora</h1>
+    <div class="ficha-perra">
+      <label for="nombre">Se llama <input id="nombre" type="text" maxlength="20" placeholder="su nombre" autocomplete="off"></label>
+      <label for="nacimiento">Nació <input id="nacimiento" type="month" placeholder="AAAA-MM"></label>
+    </div>
+    <div class="cuenta"><strong id="dominados">0</strong><span id="dominados-txt">de 23 trucos dominados</span><span class="racha" id="racha" hidden><i aria-hidden="true"></i><span></span></span></div>
+    <div class="palotes" id="palotes" aria-hidden="true"></div>
+    <div class="leyenda"><span><b style="background:var(--saddle-ink)"></b>Dominado</span><span><b style="background:var(--fuego)"></b>En curso</span><span><b style="background:rgba(243,239,230,.16)"></b>Sin empezar</span></div>
+  </header>
+
+  <div id="aviso-salud-box"></div>
+
+  <section class="semana-box" aria-labelledby="sem-h">
+    <div class="top"><span class="eyebrow" id="sem-eyebrow">Semana 1 de 8</span><button class="btn-sm" type="button" data-act="tab" data-tab="plan">Ver plan</button></div>
+    <h2 id="sem-h">Cimientos</h2>
+    <div class="chips" id="sem-chips"></div>
+    <p id="sem-nota"></p>
+    <div class="hoy" id="hoy"></div>
+    <div class="acciones" id="acciones"></div>
+    <div class="sync" id="sync">Progreso guardado en este dispositivo: en el navegador de tu móvil u ordenador.</div>
+  </section>
+
+  <nav class="tabs" role="tablist" aria-label="Secciones">
+    <button class="tab" role="tab" id="tab-trucos" aria-controls="v-trucos" aria-selected="true" type="button" data-act="tab" data-tab="trucos">Trucos</button>
+    <button class="tab" role="tab" id="tab-plan" aria-controls="v-plan" aria-selected="false" type="button" data-act="tab" data-tab="plan">Plan</button>
+    <button class="tab" role="tab" id="tab-diario" aria-controls="v-diario" aria-selected="false" type="button" data-act="tab" data-tab="diario">Diario</button>
+    <button class="tab" role="tab" id="tab-salud" aria-controls="v-salud" aria-selected="false" type="button" data-act="tab" data-tab="salud">Salud</button>
+    <button class="tab" role="tab" id="tab-guia" aria-controls="v-guia" aria-selected="false" type="button" data-act="tab" data-tab="guia">Guía</button>
+  </nav>
+
+  <section id="v-trucos" role="tabpanel" aria-labelledby="tab-trucos">
+    <div class="tools"><p>¿Ya sabe alguno?</p><button type="button" class="btn-sm" data-act="rapida">Marcar de golpe lo que sabe</button></div>
+    <div class="filtros" id="filtros" role="group" aria-label="Filtrar trucos"></div>
+    <div id="lista"></div>
+  </section>
+
+  <section id="v-plan" role="tabpanel" aria-labelledby="tab-plan" hidden>
+    <p class="plan-intro">Un bloque nuevo cada semana, sin dejar de repasar lo anterior. Si un truco no llega a 8 de 10, alarga esa semana: el plan va a su ritmo, no al revés.</p>
+    <div class="sesion-tipo">
+      <h3>Una sesión tipo: 5–10 minutos, 2–3 veces al día</h3>
+      <ol>
+        <li>1 minuto de calentamiento con algo que ya sabe: «Sienta», «Tumba».</li>
+        <li>5 minutos con el paso actual del truco nuevo.</li>
+        <li>2 minutos de repaso aleatorio de lo que ya sabe.</li>
+        <li>Cierre con algo que le salga seguro y un rato de juego.</li>
+      </ol>
+    </div>
+    <div class="semanas" id="semanas"></div>
+  </section>
+
+  <section id="v-diario" role="tabpanel" aria-labelledby="tab-diario" hidden>
+    <div class="tiles" id="tiles"></div>
+    <div class="bloque">
+      <h2>Últimas 8 semanas</h2>
+      <p>Cada casilla es un día. Cuanto más verde, más sesiones.</p>
+      <div class="mapa" id="mapa"></div>
+    </div>
+    <div class="bloque">
+      <h2>Logros</h2>
+      <p id="logros-txt">Se desbloquean solos según entrenáis.</p>
+      <div class="logros" id="logros"></div>
+    </div>
+    <div class="bloque">
+      <h2>Compartir</h2>
+      <p>Un resumen en texto para mandarlo a la familia por WhatsApp o enseñárselo al veterinario.</p>
+      <button type="button" class="entrenar sec" data-act="copiar"><span id="copiar-lbl">Copiar resumen<small>Qué sabe, qué está aprendiendo y cuánto habéis entrenado</small></span><span class="flecha" aria-hidden="true">›</span></button>
+      <textarea id="resumen-txt" readonly hidden aria-label="Resumen para compartir"></textarea>
+    </div>
+    <div class="bloque">
+      <h2>Recordatorio diario</h2>
+      <p>Crea un evento que se repite cada día en tu Google Calendar, para que el móvil te avise.</p>
+      <div class="salud-card"><div class="fila-form"><label for="rec-hora">Hora<input id="rec-hora" type="time" value="19:00"></label><a id="rec-link" class="btn-prim" href="https://calendar.google.com/" target="_blank" rel="noopener">Añadir a Google Calendar ↗</a></div><p class="hint" style="margin:0">Se abre Google Calendar con el evento listo: solo tienes que pulsar Guardar.</p></div>
+    </div>
+    <div class="bloque">
+      <h2>Copia de seguridad</h2>
+      <p>Guarda todo el progreso en un archivo y recupéralo cuando quieras, por ejemplo al cambiar de móvil.</p>
+      <div class="acciones">
+        <button type="button" class="entrenar sec" data-act="backup"><span id="backup-lbl">Descargar copia<small>Un archivo .json con trucos, diario, rutina y salud</small></span><span class="flecha" aria-hidden="true">›</span></button>
+        <label class="entrenar sec" for="restaurar"><span>Recuperar una copia<small>Elige el archivo .json que descargaste</small></span><span class="flecha" aria-hidden="true">›</span></label>
+        <input id="restaurar" type="file" accept=".json,application/json" hidden>
+      </div>
+      <div id="restaurar-confirm"></div>
+      <textarea id="backup-txt" readonly hidden aria-label="Copia de seguridad en texto"></textarea>
+    </div>
+  </section>
+
+  <section id="v-salud" role="tabpanel" aria-labelledby="tab-salud" hidden>
+    <div class="bloque">
+      <h2>Próximas citas</h2>
+      <p>Lo que le toca y cuándo. Sale de lo que apuntes abajo.</p>
+      <div id="proximas"></div>
+    </div>
+    <div class="bloque">
+      <h2>Peso</h2>
+      <p>Pésala una vez al mes. El estándar de la raza da 22–32 kg para una hembra adulta.</p>
+      <div class="salud-card">
+        <div id="peso-graf"></div>
+        <form class="fila-form" id="f-peso">
+          <label for="peso-kg">Kilos<input id="peso-kg" type="number" step="0.1" min="1" max="99" inputmode="decimal" required></label>
+          <label for="peso-f">Fecha<input id="peso-f" type="date" required></label>
+          <button type="submit" class="btn-prim">Apuntar peso</button>
+        </form>
+        <div id="peso-lista"></div>
+      </div>
+    </div>
+    <div class="bloque">
+      <h2>Vacunas y desparasitaciones</h2>
+      <p>Apunta lo que le pongan y cuándo toca lo siguiente. Las fechas las decide tu veterinario; la app solo te las recuerda.</p>
+      <form class="salud-card" id="f-ev">
+        <div class="campos">
+          <label for="ev-tipo">Tipo<select id="ev-tipo"><option value="vacuna">Vacuna</option><option value="int">Desparasitación interna</option><option value="ext">Desparasitación externa</option><option value="leish">Prevención de leishmania</option><option value="revision">Revisión veterinaria</option><option value="otro">Otro</option></select></label>
+          <label for="ev-nombre">Nombre<input id="ev-nombre" type="text" maxlength="40" placeholder="Rabia, pipeta…" autocomplete="off"></label>
+          <label for="ev-f">Fecha<input id="ev-f" type="date" required></label>
+          <label for="ev-p">Próxima<input id="ev-p" type="date"></label>
+        </div>
+        <div class="rapidos" role="group" aria-label="Calcular la próxima fecha"><span>Próxima en:</span><button type="button" data-act="ev-mas" data-m="1">1 mes</button><button type="button" data-act="ev-mas" data-m="3">3 meses</button><button type="button" data-act="ev-mas" data-m="6">6 meses</button><button type="button" data-act="ev-mas" data-m="12">1 año</button></div>
+        <button type="submit" class="btn-prim">Apuntar</button>
+      </form>
+      <div id="ev-lista" style="margin-top:10px"></div>
+    </div>
+  </section>
+
+  <section id="v-guia" role="tabpanel" aria-labelledby="tab-guia" hidden>
+    <p class="nota">Esta guía es orientativa. Ante cualquier duda de salud, de comportamiento o de su edad, consulta a tu veterinario o a un educador canino titulado.</p>
+    <div class="claves">
+      <details open>
+        <summary>Cómo aprende tu perra</summary>
+        <div class="dc">
+          <p>Repite lo que le sale a cuenta. Si premias al instante lo que quieres, lo hará más. Todo lo demás sale de ahí.</p>
+          <p><b>El marcador.</b> Una palabra corta, «¡Sí!». Significa «eso que acabas de hacer gana premio». Siempre va seguido de premio.</p>
+          <p><b>La palabra de liberación.</b> «Libre» le dice que el ejercicio ha terminado. Sin ella nunca sabe cuándo acaba un «Quieto».</p>
+          <p><b>Tres formas de enseñar:</b></p>
+          <ul>
+            <li><b>Guiar:</b> llevas su nariz con un premio hasta la postura.</li>
+            <li><b>Capturar:</b> marcas algo que hace sola, como estirarse.</li>
+            <li><b>Moldear:</b> premias pasos pequeños que se acercan al truco final.</li>
+          </ul>
+        </div>
+      </details>
+      <details>
+        <summary>La receta para cualquier truco</summary>
+        <div class="dc">
+          <ol>
+            <li>Guíala con el premio en la mano 5–6 veces, marcando cada acierto.</li>
+            <li>Haz el mismo gesto con la mano vacía y premia con la otra mano.</li>
+            <li>Cuando lo haga 8 de cada 10 veces, di la palabra justo antes del gesto.</li>
+            <li>Haz el gesto cada vez más pequeño hasta que baste con la palabra.</li>
+            <li>Practícalo en otros sitios: salón, patio, calle, parque.</li>
+          </ol>
+          <p class="nota">En la sesión, los diez puntos de colores son tus últimos diez intentos. Cuando 8 están en verde, la app te propone pasar de paso.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Las 3 D</summary>
+        <div class="dc">
+          <p>Un truco es sólido cuando aguanta las tres. Sube solo una cada vez y, al subirla, baja las otras dos.</p>
+          <div class="tres-d">
+            <div><b>Duración</b><span>Cuánto tiempo lo mantiene</span></div>
+            <div><b>Distancia</b><span>Lo lejos que estás tú</span></div>
+            <div><b>Distracción</b><span>Lo que pasa alrededor</span></div>
+          </div>
+          <p class="nota">Ejemplo: si en el parque falla el «Quieto», vuelve a 3 segundos y con tu pie pegado a ella.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Escalera de premios</summary>
+        <div class="dc">
+          <p>No todos los premios valen lo mismo. Cuanto más difícil es lo que pides, mejor tiene que ser el pago.</p>
+          <div class="escalera">
+            <div class="peldano"><b>Bajo</b><span>Su pienso. Para repasar en casa lo que ya sabe.</span></div>
+            <div class="peldano"><b>Medio</b><span>Premios comprados o galletas. Trucos nuevos en casa.</span></div>
+            <div class="peldano"><b>Alto</b><span>Pollo cocido, queso, salchicha de pavo. Calle, parque y llamada.</span></div>
+            <div class="peldano p4"><b>Premio gordo</b><span>Varios premios seguidos con fiesta, o su juguete favorito. Para un acierto difícil de verdad.</span></div>
+          </div>
+          <p class="nota">Del tamaño de un guisante y blandos, para que no pierda tiempo masticando.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Reglas de oro</summary>
+        <div class="dc">
+          <ul>
+            <li>Sesiones de 5–10 minutos, 2–3 veces al día.</li>
+            <li>Di la orden una sola vez. Si no responde en 3 segundos, ayúdala con el gesto.</li>
+            <li>Marca en el instante exacto: un premio tarde premia otra cosa.</li>
+            <li>Si falla dos veces seguidas, vuelve al paso anterior.</li>
+            <li>Termina siempre con algo que le salga bien.</li>
+            <li>Nada de castigos ni tirones: frenan el aprendizaje y le quitan las ganas de proponer.</li>
+          </ul>
+        </div>
+      </details>
+      <details>
+        <summary>Su edad y su cuerpo</summary>
+        <div class="dc">
+          <p id="edad-linea"></p>
+          <div class="aviso"><b>Hasta que lo confirme el veterinario,</b> nada de saltos altos, ponerse a dos patas ni saltar a tus brazos. En razas grandes como la suya las articulaciones siguen formándose pasado el año, y la displasia de cadera y codo es frecuente en pastores alemanes.</div>
+          <p>Por eso esta guía deja fuera «Pide» (sentada sobre las patas traseras), «Apaga la luz» y los saltos de aro. Guárdalos para más adelante.</p>
+          <p><b>Adolescencia.</b> Entre los 6 meses y los 2 años muchas perras «olvidan» cosas que sabían. Es normal: baja un paso, haz las sesiones más cortas y no te frustres.</p>
+          <p>Para «Rueda» y «¡Pum!», usa alfombra o césped. Si la ves cojear o rígida tras entrenar, para y consulta.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Problemas típicos a su edad<small>Morder, saltar, ladrar, perseguir…</small></summary>
+        <div class="dc">
+          <div class="prob">
+            <div><b>Muerde manos y ropa jugando</b><span>Para el juego 10 segundos en cuanto note dientes y ofrécele un mordedor. Premia cuando muerda el juguete. Si está pasada de vueltas, suele ser cansancio: toca descanso.</span></div>
+            <div><b>Salta encima de la gente</b><span>Atención solo con las cuatro patas en el suelo. Si salta, date la vuelta. Pide «Sienta» antes de saludar y pide a las visitas que hagan lo mismo.</span></div>
+            <div><b>Ladra a la puerta o a ruidos</b><span>En una raza guardiana avisar es normal. Agradece el aviso, mándala a su sitio y premia el silencio. Practica «A tu sitio» con el timbre.</span></div>
+            <div><b>Persigue bicis, coches o gatos</b><span>Es instinto de pastoreo. Correa larga y distancia: cuando vea el estímulo a lo lejos, pide «Mírame» y premia. Nunca suelta cerca de tráfico.</span></div>
+            <div><b>Se agobia si se queda sola</b><span>Ausencias cortas que alargas poco a poco, un Kong al salir y salidas y llegadas sin drama. Si rompe cosas, aúlla mucho o se lame sin parar, consulta con un educador canino o un veterinario etólogo.</span></div>
+            <div><b>Gruñe si te acercas a su comida o juguetes</b><span>Es protección de recursos. No le quites cosas a la fuerza: cámbialas por algo mejor. Si gruñe o enseña los dientes, busca a un profesional y no lo corrijas con castigo.</span></div>
+            <div><b>Tira de la correa</b><span>Trabaja «Junto» en paseos cortos solo de práctica y deja los paseos largos para soltar energía con correa larga.</span></div>
+          </div>
+        </div>
+      </details>
+      <details>
+        <summary>Juegos para cansarle la cabeza<small>Para días de lluvia, calor o poco tiempo</small></summary>
+        <div class="dc">
+          <ul>
+            <li><b>Busca:</b> esconde premios por el salón mientras espera en «Quieto». Empieza a la vista y ve escondiéndolos mejor.</li>
+            <li><b>Los tres vasos:</b> un premio bajo uno de tres vasos boca abajo. Mézclalos despacio y deja que elija con la nariz.</li>
+            <li><b>Toalla enrollada:</b> extiende una toalla, esparce pienso y enróllala. Tiene que desenrollarla para comer.</li>
+            <li><b>Kong congelado:</b> pienso remojado con yogur natural, congelado la noche antes. Lo mejor para cuando te pones a trabajar.</li>
+            <li><b>Escondite:</b> escóndete en otra habitación y llámala. Entrena la llamada a la vez.</li>
+            <li><b>Pienso por el césped:</b> esparce su ración en la hierba en vez de en el cuenco.</li>
+          </ul>
+          <p class="nota">Nada de productos con xilitol (edulcorante de chicles y algunos yogures o mantequillas de cacahuete): es tóxico para los perros.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Peligros de temporada<small>Calor, espigas, procesionaria y mosquitos</small></summary>
+        <div class="dc">
+          <p><b>Verano.</b> Una pastora de doble capa lo pasa mal con el calor.</p>
+          <ul>
+            <li>Entrena a primera hora o al anochecer. A mediodía, mejor juegos de olfato en casa.</li>
+            <li>Pon el dorso de la mano en el asfalto: si no aguantas 7 segundos, le quema las almohadillas.</li>
+            <li>Lleva siempre agua y haz sesiones aún más cortas.</li>
+          </ul>
+          <div class="aviso"><b>Golpe de calor:</b> jadeo muy fuerte, babeo espeso, encías muy rojas, tambaleo. Llévala a la sombra, mójala con agua fresca, no helada, y llama al veterinario.</div>
+          <p><b>Espigas, en primavera y verano.</b> Tras pasear por hierba seca, revísale orejas, ojos y entre los dedos. Si sacude mucho la cabeza o estornuda sin parar, al veterinario.</p>
+          <p><b>Procesionaria, a finales de invierno y en primavera.</b> Las orugas que van en fila bajo los pinos son muy peligrosas si las toca o las lame. Si pasa, lávale la boca con agua sin frotar y ve al veterinario de urgencia.</p>
+          <p><b>Leishmania, de primavera a otoño.</b> La transmite un mosquito que pica al atardecer y es frecuente en el sur de España. Pregunta al veterinario por collar o pipeta repelente y por la vacuna, y apúntalo en la pestaña Salud.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Material</summary>
+        <div class="dc">
+          <ul>
+            <li>Riñonera o bolsa de premios, para tener una mano libre.</li>
+            <li>Un juguete de tirar para premiar a lo grande.</li>
+            <li>Correa larga de 10 m para la llamada en el parque.</li>
+            <li>Una manta para «A tu sitio».</li>
+            <li>Nada más: una palabra corta («¡Sí!») y sus premios. Sin aparatos.</li>
+          </ul>
+          <p class="nota">Si entrenas mucho, aparta parte de su ración de pienso y úsala como premio para que no engorde.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Si se atasca</summary>
+        <div class="dc">
+          <div class="prob">
+            <div><b>Solo lo hace si ve el premio</b><span>Quita el premio de la mano antes: a las 5–6 repeticiones. Premia desde la bolsa o desde la otra mano.</span></div>
+            <div><b>En casa sí, en la calle no</b><span>Le falta generalizar. Vuelve a un paso fácil en el sitio nuevo y usa premios mejores.</span></div>
+            <div><b>Ladra, muerde las manos o se va</b><span>Está frustrada: el paso es demasiado grande o la sesión demasiado larga. Pártelo y termina con algo fácil.</span></div>
+            <div><b>Repites la orden tres veces</b><span>Aprende que la primera no cuenta. Dila una vez, espera 3 segundos y ayuda con el gesto.</span></div>
+            <div><b>Lo sabía y ya no</b><span>Adolescencia o cansancio. Un paso atrás y sesiones más cortas unos días.</span></div>
+            <div><b>Está pasada de vueltas</b><span>Mejor tras un paseo o un rato de juego, no recién levantada ni al volver de correr.</span></div>
+          </div>
+        </div>
+      </details>
+      <details>
+        <summary>Más vídeos</summary>
+        <div class="dc">
+          <p>Cada truco trae sus vídeos en español. Estos canales tienen series enteras con refuerzo positivo:</p>
+          <ul>
+            <li><a href="https://www.youtube.com/results?search_query=Hiro+Border+Collie+c%C3%B3mo+ense%C3%B1ar+al+perro" target="_blank" rel="noopener">Hiro Border Collie ↗</a>: trucos numerados, uno por vídeo.</li>
+            <li><a href="https://www.youtube.com/results?search_query=LealCan+adiestramiento" target="_blank" rel="noopener">LealCan ↗</a>: target y habilidades.</li>
+            <li><a href="https://www.youtube.com/results?search_query=Adiestramiento+en+Positivo+trucos+perro" target="_blank" rel="noopener">Adiestramiento en Positivo ↗</a>: obediencia y trucos.</li>
+            <li><a href="https://www.youtube.com/results?search_query=kikopup+trick+training" target="_blank" rel="noopener">Kikopup ↗</a>, en inglés, pero se entiende viéndolo.</li>
+            <li><a href="https://www.hundeo.com/es/educacion/trucos-para-perros" target="_blank" rel="noopener">Hundeo: 32 trucos por dificultad ↗</a></li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </section>
+</div>
+
+<div id="detalle" class="capa" hidden role="dialog" aria-modal="true" aria-labelledby="det-nombre">
+  <div class="wrap" id="det-cuerpo"></div>
+  <div class="det-pie"><div class="pie-in" id="pie"></div></div>
+</div>
+
+<div id="modo" class="full" hidden role="dialog" aria-modal="true" aria-label="Sesión de entrenamiento"><div class="full-in" id="modo-in"></div></div>
+<div id="repaso" class="full" hidden role="dialog" aria-modal="true" aria-label="Repaso aleatorio"><div class="full-in" id="repaso-in"></div></div>
+<div id="rapida" class="full" hidden role="dialog" aria-modal="true" aria-label="Marcar lo que ya sabe"><div class="full-in" id="rapida-in"></div></div>
+<div id="rutina" class="full" hidden role="dialog" aria-modal="true" aria-label="Rutina de exhibición"><div class="full-in" id="rutina-in"></div></div>
+
+<script>
+(function(){
+'use strict';
+const NIVELES=[
+  {id:'base',nombre:'Cimientos',nota:'Lo primero. Con esto, todo lo demás va el doble de rápido.'},
+  {id:'n1',nombre:'Nivel 1 · Fáciles',nota:'Trucos de una o dos piezas para coger ritmo.'},
+  {id:'n2',nombre:'Nivel 2 · Intermedios',nota:'Más pasos y más cuerpo. Sesiones cortas.'},
+  {id:'n3',nombre:'Nivel 3 · Avanzados',nota:'Combinan cosas que ya sabe.'},
+  {id:'olf',nombre:'Olfato y juegos',nota:'Lo que más cansa la cabeza de una pastora. Perfecto para días de lluvia o de calor.'},
+  {id:'ob',nombre:'Obediencia útil',nota:'Lo que más vas a usar en la calle con una perra de su tamaño.'}
+];
+const HUNDEO='https://www.hundeo.com/es/educacion/';
+const PURINA='https://www.purina.com/es/articulos/perro/comportamiento/adiestramiento/';
+const TRUCOS=[
+  {id:'marcador',nivel:'base',nombre:'El marcador',orden:'«¡Sí!»',gesto:'Ninguno: solo la palabra',
+   pasos:['Ten premios pequeños a mano.','Di «¡Sí!» justo cuando hace lo que quieres y dale un premio enseguida.','Repítelo 10 veces seguidas, sin pedirle nada.'],
+   consejo:'Es tu herramienta más importante: marca el instante exacto, aunque el premio tarde dos segundos en llegar.',
+   ojo:'No lo uses como elogio suelto. Cada «¡Sí!» va seguido de premio, aunque te hayas equivocado al decirlo.',
+   video:'cargar marcador perro palabra sí premio',guia:PURINA+'como-adiestrar-a-tu-perro-con-clicker',guiaN:'Purina'},
+  {id:'mirame',nivel:'base',nombre:'Mírame',orden:'«Mírame»',gesto:'Dedo hacia tus ojos',
+   pasos:['Pon un premio delante de tus ojos.','Cuando te mire a los ojos, di «¡Sí!» y dale el premio.','Di «Mírame» antes de hacerlo. Poco a poco, espera unos segundos.'],
+   consejo:'Es la base de la llamada y de pasear sin tirones. Practícalo en la puerta antes de salir.',
+   ojo:'Marca cuando te mire a los ojos, no cuando mire la mano del premio.',
+   video:'enseñar perro mirar a los ojos atención'},
+  {id:'toca',nivel:'base',nombre:'Toca',orden:'«Toca»',gesto:'Palma abierta a un lado',
+   pasos:['Pon la palma de la mano abierta cerca de su nariz.','Cuando la toque con el hocico, di «¡Sí!» y dale un premio.','Di «Toca» antes de poner la mano.'],
+   consejo:'Con «Toca» la llevas a donde quieras sin tirar. Lo usarás para «Junto», la llamada y «Cierra la puerta».',
+   ojo:'Deja que venga ella a la mano. Si acercas tú la mano a su nariz, no aprende nada.',
+   video:'enseñar perro target nariz mano touch'},
+
+  {id:'pata',nivel:'n1',nombre:'Dame la pata',orden:'«Pata»',gesto:'Palma hacia arriba',req:'Sentada',
+   pasos:['Siéntala y cierra un premio en el puño delante de ella.','Cuando levante la pata hacia el puño, di «¡Sí!» y dale el premio.','Di «Pata» antes de ofrecer el puño.'],
+   consejo:'Si no levanta la pata, baja el puño casi al suelo, junto a su pata.',
+   ojo:'No le cojas tú la pata: así no aprende a ofrecerla.',
+   video:'enseñar perro dar la pata',guia:HUNDEO+'ensenar-dar-pata',guiaN:'Hundeo'},
+  {id:'otra',nivel:'n1',nombre:'La otra pata',orden:'«Otra»',gesto:'Palma frente a la otra pata',req:'Dame la pata',
+   pasos:['Pide «Pata» con la mano delante de su pata derecha.','Ahora ofrece la mano delante de la izquierda.','Premia solo la pata que buscas. Si da la otra, no pasa nada: vuelve a ofrecer.','Inclina la mano hacia la pata correcta para ayudarla.','Usa una palabra para cada una: «Pata» y «Otra».'],
+   consejo:'Alterna lados en la misma sesión para que escuche y no adivine.',
+   ojo:'No premies la pata equivocada «por intentarlo»: así no distingue.',
+   video:'enseñar perro dar la otra pata'},
+  {id:'cinco',nivel:'n1',nombre:'Choca esos cinco',orden:'«Choca»',gesto:'Palma vertical',req:'Dame la pata',
+   pasos:['Pide «Pata» y gira tu palma poco a poco hasta ponerla vertical.','Marca en cuanto la pata toque la palma vertical.','Ofrece directamente la mano vertical, sin decir «Pata».','Sube la mano poco a poco hasta la altura de su cabeza.','Añade «Choca» antes de ofrecer la mano.'],
+   consejo:'Si te da la pata en vez de chocar, gira la mano más despacio.',
+   ojo:'No subas la mano tanto que tenga que levantarse de las patas traseras.',
+   video:'enseñar perro chocar los cinco',guia:HUNDEO+'ensenar-choca-esos-cinco',guiaN:'Hundeo'},
+  {id:'gira',nivel:'n1',nombre:'Gira',orden:'«Gira» / «Vuelta»',gesto:'Círculo con el dedo',
+   pasos:['Mueve el premio en círculo cerca de su nariz.','Cuando dé una vuelta completa, di «¡Sí!» y dale el premio.','Di «Gira» antes de empezar el círculo.'],
+   consejo:'Si solo gira la cabeza, haz el círculo más lento y premia media vuelta al principio.',
+   ojo:'Haz el círculo a la altura de su nariz. Si subes la mano, saltará.',
+   video:'enseñar perro girar dar vueltas',guia:PURINA+'como-ensenar-a-un-perro-a-girar',guiaN:'Purina'},
+  {id:'saluda',nivel:'n1',nombre:'Saluda',orden:'«Adiós»',gesto:'Mano que se aleja',req:'Dame la pata',
+   pasos:['Sentada, ofrece la mano como en «Pata».','Retírala justo antes de que la toque: rascará el aire.','Marca mientras la pata está en el aire.','Pide 2–3 movimientos antes de premiar.','Añade «Adiós» y aleja tu mano paso a paso.'],
+   consejo:'Cuando salga sola, pídelo desde un metro: queda muy bien en vídeo.',
+   ojo:'Si marcas tarde, premias que baje la pata. Marca arriba.',
+   video:'enseñar perro saludar con la pata',guia:HUNDEO+'ensenar-saludar',guiaN:'Hundeo'},
+
+  {id:'reverencia',nivel:'n2',nombre:'Reverencia',orden:'«Reverencia»',gesto:'Mano baja entre sus patas',req:'De pie, quieta',
+   pasos:['Empieza con ella de pie, no sentada.','Premio en su nariz: bájalo hacia el suelo entre sus patas delanteras y un poco hacia su pecho.','Marca en cuanto bajen los codos y el trasero siga arriba.','Premia rápido, antes de que se tumbe.','Captura también la que hace sola al desperezarse.','Añade «Reverencia» cuando salga 9 de 10.'],
+   consejo:'Si se tumba, pon tu otro brazo bajo su tripa al principio, sin empujar, y marca antes.',
+   ojo:'Si llevas el premio demasiado abajo y hacia delante, se tumba. Marca a mitad de bajada.',
+   video:'enseñar perro reverencia truco',guia:HUNDEO+'ensenar-reverencia',guiaN:'Hundeo'},
+  {id:'atras',nivel:'n2',nombre:'Atrás',orden:'«Atrás»',gesto:'Mano empujando el aire',
+   pasos:['Ponla en un pasillo estrecho, entre el sofá y la pared, para que retroceda recta.','De pie frente a ella, da un paso hacia ella.','Marca cualquier paso hacia atrás, aunque sea medio.','Da el premio a la altura de su boca, sin que tenga que avanzar.','Pide 2 pasos, luego 3. Añade «Atrás» y reduce tu paso a un gesto.'],
+   consejo:'Le enseña dónde tiene las patas traseras: muy buen trabajo para una perra grande y joven.',
+   ojo:'Si el premio llega lejos de ella, avanza para cogerlo y deshaces el paso.',
+   video:'enseñar perro caminar hacia atrás'},
+  {id:'rueda',nivel:'n2',nombre:'Rueda',orden:'«Rueda»',gesto:'Círculo con la mano baja',req:'Tumbada',cuidado:'Sobre alfombra o césped. Sesiones cortas: es un truco exigente.',
+   pasos:['Tumbada sobre alfombra o césped. Arrodíllate a su lado.','Premio en su nariz, llévalo hacia su hombro: se pondrá de lado. Marca y premia.','Sigue el movimiento por encima de su espalda: rodará boca arriba. Marca a mitad.','Completa el giro hasta el otro lado y premia al terminar.','Reduce el gesto a un círculo con la mano y añade «Rueda».'],
+   consejo:'Descubre hacia qué lado gira más cómoda y empieza por ese.',
+   ojo:'Nunca la empujes con las manos para que gire: le da miedo y lo retrasa.',
+   video:'enseñar perro a rodar',guia:HUNDEO+'ensenar-al-perro-a-rodar',guiaN:'Hundeo'},
+  {id:'pum',nivel:'n2',nombre:'¡Pum!',orden:'«¡Pum!»',gesto:'Pistola con los dedos',req:'Tumbada',dur:true,cuidado:'Sobre alfombra o césped.',
+   pasos:['Tumbada, lleva el premio hacia su hombro hasta que quede de lado.','Espera a que apoye la cabeza en el suelo. Marca y premia en el suelo.','Alarga 1–3 segundos antes de marcar.','Añade el gesto de pistola y «¡Pum!».','Termina siempre con «Libre».'],
+   consejo:'Premia en el suelo, junto a su boca, para que no levante la cabeza.',
+   ojo:'No pidas mucha duración al principio: aguanta mejor 2 segundos bien hechos que 10 a medias.',
+   video:'enseñar perro hacerse el muerto',guia:PURINA+'como-ensenar-a-un-perro-a-hacerse-el-muerto',guiaN:'Purina'},
+  {id:'ocho',nivel:'n2',nombre:'Entre las piernas',orden:'«Ocho»',gesto:'Mano que guía por detrás',
+   pasos:['De pie, piernas bien abiertas, ella a tu izquierda.','Con un premio en la mano derecha, guíala desde atrás para que pase entre tus piernas.','Rodea tu pierna derecha y cambia el premio a la mano izquierda para que vuelva a pasar: es el ocho.','Marca cada pase al principio; luego, cada ocho completo.','Más adelante, camina despacio y que pase en cada paso.'],
+   consejo:'Con una perra grande, abre bien las piernas para que no pase agachada.',
+   ojo:'Si dudas al cambiar de mano, se para. Ensaya el movimiento sin ella primero.',
+   video:'enseñar perro pasar entre las piernas ocho slalom'},
+  {id:'tapate',nivel:'n2',nombre:'¿Vergüenza?',orden:'«¿Vergüenza?»',gesto:'Mano en tu cara',
+   pasos:['Pega un trozo de cinta de pintor en su hocico, sin apretar.','Marca cualquier movimiento de la pata hacia la cara.','Espera a que la pata toque el hocico de verdad.','Prueba sin cinta. Si se pierde, vuelve a ponerla.','Añade «¿Vergüenza?» antes del gesto.'],
+   consejo:'Usa cinta que se despegue sola. Si le agobia, para y prueba otro día.',
+   ojo:'Quítale la cinta tú si no la consigue: no la dejes frustrada con ella puesta.',
+   video:'enseñar perro taparse la cara vergüenza'},
+
+  {id:'trae',nivel:'n3',nombre:'Trae y suelta',orden:'«Trae» / «Suelta»',gesto:'Mano abierta bajo su boca',
+   pasos:['Juega al tira y afloja. Para y acerca un premio a su nariz: al soltar el juguete, «Suelta» y premio.','Lanza el juguete a un metro. Cuando lo coja, llámala con alegría y retrocede.','Al llegar, cámbialo por un premio o por otro lanzamiento.','Aumenta la distancia poco a poco.','Añade «Trae» antes de lanzar.'],
+   consejo:'En una pastora el mejor premio suele ser volver a lanzar.',
+   ojo:'Si no lo trae, no la persigas: el juego pasa a ser «que me pillen». Aléjate y llámala.',
+   video:'enseñar perro traer y soltar juguete'},
+  {id:'nombre',nivel:'n3',nombre:'Trae la pelota',orden:'«Trae la pelota»',gesto:'Ninguno',req:'Trae y suelta',
+   pasos:['Elige un juguete y di su nombre cada vez que lo coja: «Pelota».','Pon solo ese juguete en el suelo y pide «Trae la pelota».','Añade un segundo juguete que le guste menos. Premia solo si trae la pelota.','Cambia los juguetes de sitio cada vez.','Cuando acierte 8 de 10, enséñale el nombre del segundo juguete por separado.'],
+   consejo:'Un nombre nuevo cada vez. No pases al tercero hasta que distinga dos sin fallar.',
+   ojo:'No mires el juguete correcto: te leerá la mirada en vez de la palabra.',
+   video:'enseñar perro nombre de los juguetes'},
+  {id:'recoge',nivel:'n3',nombre:'Recoge',orden:'«Recoge»',gesto:'Señalar la caja',req:'Trae y suelta',
+   pasos:['Siéntate junto a una caja baja.','Pide «Trae» y pon la mano sobre la caja: si el juguete cae dentro, «¡Sí!» y premio.','Aleja tu mano de la caja poco a poco.','Esparce 2–3 juguetes y premia al final.','Añade «Recoge».'],
+   consejo:'Una caja baja y ancha al principio. Si falla, vuelve a poner la mano encima.',
+   ojo:'Premia que caiga dentro, no que lo suelte cerca.',
+   video:'enseñar perro recoger juguetes caja'},
+  {id:'cierra',nivel:'n3',nombre:'Cierra la puerta',orden:'«Cierra»',gesto:'Señalar la puerta',req:'Toca',
+   pasos:['Pega un pósit en una puerta ligera entreabierta, a la altura de su nariz.','Pide «Toca» señalando el pósit. Marca el toque.','Espera a que empuje más fuerte: marca cuando la puerta se mueva.','Marca solo cuando se cierre del todo.','Haz el pósit más pequeño hasta quitarlo y añade «Cierra».'],
+   consejo:'Empieza con una puerta de armario que cierre suave para que el golpe no la asuste.',
+   ojo:'Que empuje con la nariz, no con las patas: así no araña ni se pone de pie.',
+   video:'enseñar perro cerrar puerta truco'},
+
+  {id:'busca',nivel:'olf',nombre:'Busca',orden:'«Busca»',gesto:'Brazo señalando la zona',
+   pasos:['Que espere en «Quieto» o que la sujete alguien. Deja un premio a la vista a un metro.','Di «Busca» y suéltala. Cuando lo coma, fiesta.','Esconde el premio detrás de la pata de una silla, todavía fácil.','Esconde varios por la habitación mientras espera.','Pasa a otra habitación o al jardín, con premios más altos o más tapados.'],
+   consejo:'Olfatear cansa mucho la cabeza: una buena ronda de «Busca» la deja tranquila un buen rato.',
+   ojo:'No le señales el premio cada vez. Deja que use la nariz aunque tarde.',
+   video:'enseñar perro buscar premios olfato'},
+  {id:'mano',nivel:'olf',nombre:'¿En qué mano?',orden:'«¿Dónde está?»',gesto:'Dos puños cerrados',req:'Déjalo',
+   pasos:['Esconde un premio en un puño y preséntale los dos puños cerrados.','Espera a que olfatee. Cuando toque con la nariz el puño correcto, «¡Sí!» y ábrelo.','Si elige el vacío, ábrelo despacio para que vea que no hay nada, y repite.','Cambia el premio de mano al azar, sin que te vea.','Añade «¿Dónde está?» antes de presentar los puños.'],
+   consejo:'Cuando acierte siempre, frota el premio en las dos manos para que tenga que afinar más la nariz.',
+   ojo:'Si te araña con la pata, premia solo los toques con la nariz.',
+   video:'juego perro en qué mano está el premio'},
+
+  {id:'ven',nivel:'ob',nombre:'Ven (la llamada)',orden:'Su nombre + «Ven»',gesto:'Brazos abiertos o señalar tus pies',
+   pasos:['En casa, di su nombre y «Ven» una sola vez, con tono alegre, y retrocede unos pasos.','Al llegar, fiesta y premio de lujo: pollo o queso.','Ping-pong: dos personas la llaman por turnos por el pasillo.','En el parque, con correa larga de 10 m. Si no viene, recoge la correa sin regañar.','Sube las distracciones poco a poco.'],
+   consejo:'Guarda un premio que solo sale para la llamada.',
+   ojo:'Nunca la regañes al llegar, aunque tarde. Nunca la llames para algo que no le gusta. Si no viene, no la persigas: aléjate tú.',
+   video:'enseñar perro llamada venir',guia:PURINA+'como-ensenar-a-un-perro-a-acudir-al-llamado',guiaN:'Purina'},
+  {id:'quieto',nivel:'ob',nombre:'Quieto',orden:'«Quieto» y «Libre»',gesto:'Palma frente a ella',dur:true,
+   pasos:['Sentada o tumbada, palma abierta frente a ella: «Quieto».','Cuenta 2 segundos, marca y premia en su sitio. Luego «Libre».','Sube la duración: 5, 10, 20 segundos.','Luego la distancia: un paso atrás, vuelve, premia.','Luego distracciones: agáchate, da una palmada, tira una pelota lejos.'],
+   consejo:'Vuelve tú a premiarla en su sitio. Así entiende que quedarse paga.',
+   ojo:'No la llames desde el «Quieto» al principio: mezcla dos ejercicios y se levanta antes.',
+   video:'enseñar perro quieto quedarse'},
+  {id:'dejalo',nivel:'ob',nombre:'Déjalo',orden:'«Déjalo»',gesto:'Mano cerrada',
+   pasos:['Premio en el puño cerrado delante de ella.','Deja que olfatee, lama, empuje. Espera.','En cuanto aparte la nariz, «¡Sí!» y premio de la OTRA mano.','Repite con la mano abierta: si va a por él, ciérrala.','Luego en el suelo, tapándolo con el pie si hace falta.','Añade «Déjalo» antes de presentar el premio.'],
+   consejo:'En la calle te salva de comida tirada, orugas y cosas peores.',
+   ojo:'Nunca le des el premio que te ha pedido que deje: siempre otro, de la otra mano.',
+   video:'enseñar perro déjalo no coger comida',guia:PURINA+'como-ensenar-a-un-perro-a-dejar-algo',guiaN:'Purina'},
+  {id:'junto',nivel:'ob',nombre:'Junto (correa floja)',orden:'«Junto»',gesto:'Palmada en tu pierna',
+   pasos:['Premia cada paso que dé a tu lado, a la altura de tu pierna izquierda.','Si tira, párate como un árbol.','Cuando la correa se afloje o te mire, «¡Sí!» y sigue andando.','Cambia de dirección a menudo y premia cuando te siga.','Ve espaciando los premios: cada 2 pasos, cada 5, cada 10.'],
+   consejo:'Antes de practicar, gasta un poco su energía con juego. Una pastora joven a tope tira el doble.',
+   ojo:'No sigas andando con la correa tensa: le enseñas que tirar funciona.',
+   video:'enseñar perro pasear sin tirar correa',guia:HUNDEO+'caminar-con-correa',guiaN:'Hundeo'},
+  {id:'sitio',nivel:'ob',nombre:'A tu sitio',orden:'«Sitio»',gesto:'Señalar la manta',
+   pasos:['Pon una manta en el suelo. Premia cada vez que la mire o la pise.','Premia cuando suba las cuatro patas; luego, cuando se tumbe.','Añade «Sitio» y lanza el premio a la manta.','Alarga el tiempo tumbada con premios tranquilos, uno cada pocos segundos.','Mándala desde más lejos.'],
+   consejo:'Le enseña a calmarse sola. En una raza tan activa vale oro.',
+   ojo:'Premia con calma y en voz baja: aquí no queremos fiesta.',
+   video:'enseñar perro ir a su sitio manta relajación',dur:true},
+  {id:'espera',nivel:'ob',nombre:'Espera en la puerta',orden:'«Espera»',gesto:'Palma frente a ella',req:'Quieto',dur:true,
+   pasos:['Con correa, ponte ante la puerta cerrada. Si se sienta o se queda quieta, «¡Sí!» y premio.','Abre la puerta un poco. Si se lanza, ciérrala con suavidad. Si espera, marca y premia.','Abre la puerta del todo y espera 2 segundos antes de decir «Libre» para salir.','Sal tú primero mientras ella espera. Luego, «Libre».','Hazlo en todas las puertas: casa, portal, ascensor y coche.'],
+   consejo:'Cada salida al paseo es una sesión gratis de «Espera». Si lo haces siempre, se vuelve costumbre.',
+   ojo:'La puerta solo se abre si espera. Si un día sale sin permiso, el premio ha sido la calle.',
+   video:'enseñar perro esperar en la puerta'},
+  {id:'silencio',nivel:'ob',nombre:'Habla y silencio',orden:'«Habla» / «Silencio»',gesto:'Mano que se abre / dedo en los labios',dur:true,
+   pasos:['Busca algo que la haga ladrar un poco, como llamar a la puerta. Cuando ladre, di «Habla», marca y premia.','Repite hasta que ladre al oír «Habla».','Tras un ladrido, di «Silencio» y pon un premio delante de su nariz: al olerlo se calla. Marca ese silencio.','Alarga el silencio: 2, 5, 10 segundos antes de premiar.','Usa «Silencio» cuando ladre a la puerta y premia en cuanto se calle.'],
+   consejo:'Enseñar «Habla» primero te da un ladrido que controlas, y con él puedes practicar el «Silencio».',
+   ojo:'No premies ladridos que no has pedido. Si ladra para exigirte algo, espera a que se calle.',
+   video:'enseñar perro ladrar y callar a la orden'}
+];
+const BASICOS=[
+  {id:'sienta',nombre:'Sienta',orden:'«Sienta»',gesto:'Mano que sube'},
+  {id:'tumba',nombre:'Tumba',orden:'«Tumba»',gesto:'Mano que baja al suelo'}
+];
+const VIDEOS={
+  marcador:[],
+  mirame:[['gPMHAQkJ31I','Contacto visual: el primer paso',''],['kOch-30bMN4','Que te preste atención','']],
+  toca:[['HBLxmaWC7GY','Target de mano: «toca»','LealCan'],['JYdjtI4INCM','El target o «toca»','']],
+  pata:[['WH_z25n4YzY','Dar la pata, paso a paso','ExpertoAnimal'],['DcPoOz-S8ZI','Pata, chocar y saludar en un vídeo','']],
+  otra:[['DcPoOz-S8ZI','Pata, chocar y saludar en un vídeo',''],['MzE90VF-BJc','Dar la pata para principiantes','']],
+  cinco:[['qYdFQWpGYzo','Chocar los cinco en 5 minutos',''],['DcPoOz-S8ZI','Pata, chocar y saludar en un vídeo','']],
+  gira:[['-u665IpcXN4','Dar vueltas, paso a paso',''],['f3fU74QENd4','Girar: tutorial rápido','']],
+  saluda:[['DcPoOz-S8ZI','Pata, chocar y saludar en un vídeo','']],
+  reverencia:[['Wno2dzY4buI','La reverencia','Hiro Border Collie'],['41k7Hgtg1F8','Reverencia','Royal Canin']],
+  atras:[['Ys5Rwdp_hbs','Caminar hacia atrás','Hiro Border Collie']],
+  rueda:[['WdEtGtf1BiQ','Rodar en el suelo, paso a paso','']],
+  pum:[['80C-819MvnU','Hacerse el muerto','Adiestramiento en Positivo'],['usUnAsUG2jA','Hacerse el muerto con «bang»','']],
+  ocho:[['9kDJSkv9Bbw','Slalom entre las piernas y otros trucos','']],
+  tapate:[['yAgJlVRcPQk','Tapar los ojos con la pata (en inglés)',''],['JCQ4VJA75yU','Cómo enseñar a «tapar los ojos» (en inglés)','']],
+  trae:[['phLo0gXKk_I','Traer la pelota y soltarla sin pelear',''],['g1ThpqjbSe0','Soltar a la orden: dos formas','']],
+  nombre:[['UhZsfNx-LKI','Reto: el juguete por su nombre','']],
+  recoge:[['JByXpnjAVfQ','Guardar los juguetes','Hiro Border Collie'],['kfyatdzWHHw','Guardar objetos donde le digas','']],
+  cierra:[['7DVHV-4Fh6E','Cerrar puertas','Adiestramiento en Positivo'],['znY32roGtZU','Cerrar puertas con target','LealCan']],
+  ven:[['HKJlycaojpk','Venir a la llamada, paso a paso',''],['wt5kc89Gm9I','Errores que estropean la llamada',''],['HyFrn-vgttk','Claves de la llamada','PAT Educadora Canina']],
+  quieto:[['NjO7_vZSlaY','Cómo entrenar el «quieto»',''],['nZdayjBtpwg','Quieto, paso a paso','Adiestramiento en Positivo']],
+  dejalo:[['TrQnMeMsdgc','No comer cosas del suelo',''],['KZk0jDLgJ-M','Que no coja nada del suelo','']],
+  junto:[['cAUfawQJP4M','No tirar de la correa','ExpertoAnimal y PAT'],['7j39pMOJj7s','Dejar de tirar: un caso real','']],
+  sitio:[['VkrmbsKV75Y','Ir a su sitio y relajarse','']],
+  busca:[['Vb8ULh7W4qc','Jugar a «busca» y estimular su olfato',''],['O-f37HughYE','7 ejercicios de olfato y el «busca»',''],['c7u-X381pZA','El juego de buscar, clase de olfato','']],
+  mano:[['sr_dlqSEh8g','Juego de los vasos: elegir con la nariz',''],['n7qmtVA9bRU','Cómo empezar un juego de olfato','']],
+  espera:[['uY0OPJwkIUY','Si sale corriendo al abrir la puerta','']],
+  silencio:[['rSZ0FP7vW_8','Que deje de ladrar, sin castigos',''],['jiPdhWf7-10','Habla y silencio (en inglés)','Canine Companions']]
+};
+/* ---------- Dibujos: pastora alemana articulada ---------- */
+const POSES={
+  DP:{S:[124,60],H:[74,65],N:[140,44],C:[147,37],a:0.3,
+      fl:[[[118,70],[116,93],[114,116],[119,116]],[[72,72],[80,92],[66,104],[67,116],[72,116]]],
+      nl:[[[126,70],[129,93],[128,116],[133,116]],[[80,72],[89,92],[75,104],[77,116],[82,116]]],
+      cola:'M60,68 Q47,82 50,104'},
+  SE:{S:[112,60],H:[84,96],N:[122,44],C:[128,36],a:0.25,
+      fl:[[[106,68],[107,92],[106,116],[111,116]],[[78,98],[96,104],[78,114],[92,116]]],
+      nl:[[[114,68],[117,92],[117,116],[122,116]],[[86,98],[104,103],[86,114],[101,116]]],
+      muslo:[95,101,14,10,-18],cola:'M74,104 Q56,116 36,115'},
+  TU:{S:[122,95],H:[72,103],bw:26,N:[138,77],C:[145,69],a:0.25,
+      fl:[[[116,103],[118,115],[144,116]]],
+      nl:[[[123,103],[127,115],[152,116]],[[78,107],[93,113],[77,117],[93,117]]],
+      muslo:[84,106,14,8,-8],cola:'M60,105 Q42,117 24,117'},
+  DL:{S:[126,104],H:[66,104],bw:24,N:[142,106],C:[152,104],a:-0.1,ojo:'cerrado',lengua:true,
+      fl:[[[126,110],[142,116],[150,116]],[[120,111],[136,117],[143,117]],[[72,111],[56,116],[46,116]],[[66,111],[52,117],[42,117]]],
+      nl:[],cola:'M54,103 Q36,98 22,104'},
+  BA:{S:[124,100],H:[72,100],bw:26,sup:true,N:[140,100],C:[150,98],a:-0.5,orejasAbajo:true,
+      fl:[[[118,90],[124,74],[114,64]],[[72,90],[62,74],[70,66]]],
+      nl:[[[124,90],[132,72],[124,60]],[[78,90],[70,72],[80,62]]],
+      cola:'M60,102 Q44,110 30,112'},
+  RV:{S:[120,94],H:[74,64],bw:27,N:[136,86],C:[146,82],a:0.15,
+      fl:[[[114,100],[116,112],[142,114]],[[70,70],[78,92],[64,104],[64,116],[69,116]]],
+      nl:[[[121,101],[124,113],[150,115]],[[78,70],[87,92],[73,104],[75,116],[80,116]]],
+      cola:'M62,58 Q48,40 56,24'},
+  CA:{S:[126,58],H:[74,62],bw:26,N:[142,46],C:[150,42],a:0.15,orejasAtras:true,
+      fl:[[[120,66],[136,82],[150,92]],[[70,70],[56,84],[42,92]]],
+      nl:[[[126,66],[134,86],[148,100]],[[78,70],[62,88],[50,100]]],
+      cola:'M62,58 Q44,52 30,58',sombra:true},
+  NS:{S:[122,62],H:[72,64],N:[138,76],C:[150,92],a:1.15,
+      fl:[[[116,70],[114,93],[112,116],[117,116]],[[70,71],[78,92],[64,104],[65,116],[70,116]]],
+      nl:[[[124,70],[127,93],[126,116],[131,116]],[[78,71],[87,92],[73,104],[75,116],[80,116]]],
+      cola:'M58,66 Q45,80 48,102'}
+};
+const ILUS={
+  marcador:{b:'SE',x:['burbuja:¡Sí!','premio:150,58']},
+  mirame:{b:'SE',m:{a:-0.55},x:['cara','mirada']},
+  toca:{b:'DP',x:['palma:166,42']},
+  pata:{b:'SE',m:{nl0:[[114,68],[127,79],[141,81]]},x:['manoArriba:146,86']},
+  otra:{b:'SE',m:{fl0:[[106,68],[121,80],[135,84]]},x:['manoArriba:141,89']},
+  cinco:{b:'SE',m:{nl0:[[114,66],[126,55],[139,48]]},x:['palma:145,47']},
+  gira:{b:'DP',x:['giro']},
+  saluda:{b:'SE',m:{a:0.1,nl0:[[114,66],[130,60],[144,54]]},x:['ondas:144,54']},
+  reverencia:{b:'RV',x:['cola-mueve']},
+  atras:{b:'DP',x:['flechaAtras']},
+  rueda:{b:'BA',x:['giro']},
+  pum:{b:'DL',x:['burbuja:¡Pum!']},
+  ocho:{b:'DP',x:['piernas']},
+  tapate:{b:'SE',m:{a:0.7,nl0:[[114,66],[127,56],[135,38]]}},
+  trae:{b:'DP',x:['pelotaBoca']},
+  nombre:{b:'NS',x:['pelota:168,111','cuerda']},
+  recoge:{b:'NS',m:{C:[148,80],N:[136,70],a:0.95},x:['caja','pelotaCae']},
+  cierra:{b:'DP',x:['puertaEmpuje']},
+  busca:{b:'NS',x:['premiosSuelo','olfato']},
+  mano:{b:'SE',m:{a:0.55},x:['punos']},
+  ven:{b:'CA',x:['velocidad']},
+  quieto:{b:'TU',x:['palma:172,52']},
+  dejalo:{b:'SE',m:{a:-0.5},x:['premio:152,114','puno:156,96','mirarArriba']},
+  junto:{b:'DP',x:['piernaJunto','correa']},
+  sitio:{b:'TU',x:['manta']},
+  espera:{b:'SE',x:['puerta']},
+  silencio:{b:'SE',m:{boca:true},x:['ladrido']},
+  sienta:{b:'SE'},
+  tumba:{b:'TU'}
+};
+function dibujo(id,etiqueta){
+  const il=ILUS[id];if(!il)return '';
+  const p=Object.assign({},POSES[il.b],il.m||{});
+  if(il.m&&il.m.nl0){p.nl=[il.m.nl0].concat(POSES[il.b].nl.slice(1));}
+  if(il.m&&il.m.fl0){p.fl=[il.m.fl0].concat(POSES[il.b].fl.slice(1));}
+  const x=il.x||[];
+  const pts=a=>a.map(q=>q[0].toFixed(1)+','+q[1].toFixed(1)).join(' ');
+  const L=(a,c,w)=>'<polyline points="'+pts(a)+'" fill="none" stroke="'+c+'" stroke-width="'+w+'" stroke-linecap="round" stroke-linejoin="round"/>';
+  const atras=[],delante=[],fondo=[];
+  x.forEach(k=>{const [n,arg]=k.split(':');const v=arg?arg.split(',').map(Number):[];
+    const r=PROPS[n]&&PROPS[n](v,p,arg);if(!r)return;
+    if(r.fondo)fondo.push(r.fondo);if(r.atras)atras.push(r.atras);if(r.delante)delante.push(r.delante);});
+  const bw=p.bw||28,T='var(--perro-tan)',T2='var(--perro-tan2)',K='var(--perro-negro)';
+  let s='<svg class="dib" viewBox="0 0 200 130" role="img" aria-label="'+esc(etiqueta||'')+'">';
+  s+='<line x1="8" x2="192" y1="118.5" y2="118.5" stroke="var(--suelo)" stroke-width="1.5" stroke-linecap="round"/>';
+  if(p.sombra)s+='<ellipse cx="100" cy="118" rx="52" ry="3.5" fill="var(--suelo)" opacity=".7"/>';
+  s+=fondo.join('');
+  s+=atras.join('');
+  p.fl.forEach(l=>{s+=L(l,T2,8);});
+  s+='<path d="'+p.cola+'" fill="none" stroke="'+T+'" stroke-width="9" stroke-linecap="round"/>';
+  s+=L([p.H,p.S],T,bw);
+  const dx=p.S[0]-p.H[0],dy=p.S[1]-p.H[1],len=Math.hypot(dx,dy);let nx=dy/len,ny=-dx/len;if(p.sup){nx=-nx;ny=-ny;}
+  const off=bw*0.22,sa=[p.H[0]+dx*0.14+nx*off,p.H[1]+dy*0.14+ny*off],sb=[p.H[0]+dx*0.8+nx*off,p.H[1]+dy*0.8+ny*off];
+  s+=L([sa,sb],K,bw*0.55);
+  if(p.muslo){const m=p.muslo;s+='<ellipse cx="'+m[0]+'" cy="'+m[1]+'" rx="'+m[2]+'" ry="'+m[3]+'" transform="rotate('+m[4]+' '+m[0]+' '+m[1]+')" fill="'+T+'"/>';}
+  s+=L([p.S,p.N],T,16);
+  const ang=p.a||0,dir=[Math.cos(ang),Math.sin(ang)];let up=[dir[1],-dir[0]];if(p.orejasAbajo)up=[-up[0],-up[1]];
+  const C=p.C,at=(k,u)=>[C[0]+dir[0]*k+up[0]*u,C[1]+dir[1]*k+up[1]*u];
+  const tri=(a,c)=>'<polygon points="'+pts(a)+'" fill="'+c+'" stroke="'+c+'" stroke-width="2" stroke-linejoin="round"/>';
+  if(p.orejasAtras){s+=tri([at(-10,3),at(-22,10),at(-4,8)],'var(--perro-oreja2)');}
+  else s+=tri([at(-11,3),at(-9,19),at(-3,7)],'var(--perro-oreja2)');
+  s+='<circle cx="'+C[0].toFixed(1)+'" cy="'+C[1].toFixed(1)+'" r="10.5" fill="'+T+'"/>';
+  s+=L([at(-5,8),at(4,6)],'var(--perro-hocico)',5);
+  if(p.boca){s+=L([at(2,-1),at(15,0)],'var(--perro-hocico)',8);s+=L([at(3,-5),at(13,-11)],'var(--perro-hocico)',6);s+='<circle cx="'+at(16,0)[0].toFixed(1)+'" cy="'+at(16,0)[1].toFixed(1)+'" r="2.6" fill="'+K+'"/>';}
+  else{s+=L([at(2,-2),at(15,-3)],'var(--perro-hocico)',10);s+='<circle cx="'+at(17.5,-2)[0].toFixed(1)+'" cy="'+at(17.5,-2)[1].toFixed(1)+'" r="2.8" fill="'+K+'"/>';}
+  if(p.lengua){const t=at(10,-8);s+='<ellipse cx="'+t[0].toFixed(1)+'" cy="'+t[1].toFixed(1)+'" rx="2.6" ry="4" fill="var(--lengua)"/>';}
+  if(p.orejasAtras)s+=tri([at(-5,5),at(-18,13),at(1,9)],'var(--perro-oreja)');
+  else s+=tri([at(-6,6),at(-2,22),at(3,8)],'var(--perro-oreja)');
+  if(p.ojo==='cerrado'){s+=L([at(2,4),at(6,4)],K,1.8);}
+  else{const e=at(4,3.5);s+='<circle cx="'+e[0].toFixed(1)+'" cy="'+e[1].toFixed(1)+'" r="1.8" fill="'+K+'"/>';}
+  p.nl.forEach(l=>{s+=L(l,T,8);});
+  s+=delante.join('');
+  return s+'</svg>';
+}
+const brazo=(x1,y1,x2,y2)=>'<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="var(--ropa)" stroke-width="13" stroke-linecap="round"/>';
+const flecha=(d,hx,hy,ang)=>{const a=ang*Math.PI/180,p1=[hx-9*Math.cos(a-0.5),hy-9*Math.sin(a-0.5)],p2=[hx-9*Math.cos(a+0.5),hy-9*Math.sin(a+0.5)];return '<path d="'+d+'" fill="none" stroke="var(--trazo)" stroke-width="2.5" stroke-linecap="round"/><polygon points="'+hx+','+hy+' '+p1[0].toFixed(1)+','+p1[1].toFixed(1)+' '+p2[0].toFixed(1)+','+p2[1].toFixed(1)+'" fill="var(--trazo)"/>';};
+const PROPS={
+  burbuja:(v,p,txt)=>({delante:'<g><rect x="148" y="6" width="46" height="24" rx="12" fill="var(--burbuja)" stroke="var(--trazo)" stroke-width="1.5"/><path d="M180,29 L188,38 L172,29" fill="var(--burbuja)" stroke="var(--trazo)" stroke-width="1.5" stroke-linejoin="round"/><rect x="172" y="27" width="10" height="3" fill="var(--burbuja)"/><text x="171" y="22.5" text-anchor="middle" font-family="Archivo,Arial,sans-serif" font-weight="800" font-size="13" fill="var(--trazo)">'+esc(txt)+'</text></g>'}),
+  premio:v=>({delante:'<circle cx="'+v[0]+'" cy="'+v[1]+'" r="3.2" fill="var(--premio)"/>'}),
+  cara:()=>({fondo:'<circle cx="188" cy="6" r="20" fill="var(--piel)"/><circle cx="178" cy="10" r="1.8" fill="var(--trazo)"/><path d="M168,-4 Q188,-14 208,-2 L208,-12 L168,-12Z" fill="var(--pelo)"/>'}),
+  mirada:()=>({delante:'<line x1="135" y1="26" x2="174" y2="12" stroke="var(--trazo)" stroke-width="1.6" stroke-dasharray="3 4" stroke-linecap="round"/>'}),
+  mirarArriba:()=>({delante:'<line x1="134" y1="24" x2="160" y2="4" stroke="var(--trazo)" stroke-width="1.6" stroke-dasharray="3 4" stroke-linecap="round"/>'}),
+  palma:v=>({delante:brazo(v[0]+16,v[1]+8,206,v[1]+14)+'<rect x="'+(v[0]-1)+'" y="'+(v[1]-13)+'" width="10" height="26" rx="5" fill="var(--piel)"/><rect x="'+(v[0]+4)+'" y="'+(v[1]-4)+'" width="9" height="6" rx="3" fill="var(--piel)"/>'}),
+  manoArriba:v=>({delante:brazo(v[0]+14,v[1]+2,206,v[1]+10)+'<ellipse cx="'+v[0]+'" cy="'+v[1]+'" rx="12" ry="4.5" fill="var(--piel)"/><ellipse cx="'+(v[0]+4)+'" cy="'+(v[1]-4)+'" rx="3" ry="2.4" fill="var(--piel)"/>'}),
+  puno:v=>({delante:brazo(v[0]+6,v[1]-6,206,v[1]-30)+'<circle cx="'+v[0]+'" cy="'+v[1]+'" r="7.5" fill="var(--piel)"/>'}),
+  punos:()=>({delante:brazo(156,82,176,134)+brazo(182,82,206,128)+'<circle cx="152" cy="78" r="7.5" fill="var(--piel)"/><circle cx="178" cy="78" r="7.5" fill="var(--piel)"/><text x="165" y="64" text-anchor="middle" font-family="Archivo,Arial,sans-serif" font-weight="800" font-size="14" fill="var(--trazo)">?</text>'}),
+  giro:()=>({delante:flecha('M18,30 A14,14 0 1 1 30,44',30,44,140)}),
+  flechaAtras:()=>({delante:flecha('M118,22 L64,22',62,22,180)}),
+  ondas:v=>({delante:'<path d="M'+(v[0]+8)+','+(v[1]-10)+' q6,6 0,14 M'+(v[0]+14)+','+(v[1]-14)+' q9,10 0,22 M'+(v[0]-8)+','+(v[1]-10)+' q-6,6 0,14" fill="none" stroke="var(--trazo)" stroke-width="2" stroke-linecap="round"/>'}),
+  'cola-mueve':()=>({delante:'<path d="M44,30 q-4,-6 0,-12 M40,40 q-6,-4 -6,-12" fill="none" stroke="var(--trazo)" stroke-width="2" stroke-linecap="round"/>'}),
+  piernas:()=>({atras:'<rect x="92" y="-4" width="16" height="118" rx="7" fill="var(--ropa2)"/><rect x="88" y="110" width="24" height="8" rx="4" fill="var(--zapato)"/>',
+                delante:'<rect x="138" y="-4" width="16" height="118" rx="7" fill="var(--ropa)"/><rect x="134" y="110" width="24" height="8" rx="4" fill="var(--zapato)"/>'+flecha('M40,124 C70,104 130,128 160,108',162,107,-35)}),
+  pelotaBoca:()=>({delante:'<circle cx="158.5" cy="47" r="6.5" fill="var(--pelota)"/><path d="M153,44 q5,4 11,1" fill="none" stroke="var(--pelota2)" stroke-width="1.5"/>'}),
+  pelota:v=>({delante:'<circle cx="'+v[0]+'" cy="'+v[1]+'" r="6.5" fill="var(--pelota)"/><path d="M'+(v[0]-5.5)+','+(v[1]-3)+' q5.5,4 11,1" fill="none" stroke="var(--pelota2)" stroke-width="1.5"/>'}),
+  cuerda:()=>({delante:'<line x1="178" y1="113" x2="196" y2="110" stroke="var(--cuerda)" stroke-width="5" stroke-linecap="round"/><circle cx="177" cy="113" r="4" fill="var(--cuerda)"/><circle cx="196" cy="110" r="4" fill="var(--cuerda)"/>'}),
+  caja:()=>({delante:'<path d="M152,98 L194,98 L190,118 L156,118 Z" fill="var(--caja)"/><line x1="152" y1="98" x2="194" y2="98" stroke="var(--trazo)" stroke-width="1.5"/>'}),
+  pelotaCae:()=>({delante:'<circle cx="170" cy="94" r="6" fill="var(--pelota)"/><path d="M170,80 v6 M176,82 v5" stroke="var(--trazo)" stroke-width="1.6" stroke-linecap="round"/>'}),
+  puertaEmpuje:()=>({fondo:'<polygon points="168,8 196,0 196,124 168,118" fill="var(--puerta)"/><circle cx="174" cy="66" r="2.5" fill="var(--trazo)"/>',delante:flecha('M176,30 L192,28',194,28,-5)}),
+  puerta:()=>({fondo:'<rect x="160" y="10" width="34" height="108" rx="2" fill="var(--puerta)"/><rect x="165" y="16" width="24" height="40" rx="2" fill="none" stroke="var(--trazo)" stroke-width="1" opacity=".5"/><circle cx="166" cy="70" r="2.5" fill="var(--trazo)"/>'}),
+  premiosSuelo:()=>({delante:'<circle cx="166" cy="114" r="3" fill="var(--premio)"/><circle cx="180" cy="112" r="3" fill="var(--premio)"/><circle cx="190" cy="115" r="3" fill="var(--premio)"/>'}),
+  olfato:()=>({delante:'<path d="M164,100 q4,-3 0,-7 M170,102 q5,-4 0,-9" fill="none" stroke="var(--trazo)" stroke-width="1.6" stroke-linecap="round"/>'}),
+  velocidad:()=>({atras:'<path d="M8,48 h22 M4,60 h20 M10,72 h18" stroke="var(--trazo)" stroke-width="2" stroke-linecap="round" opacity=".7"/>'}),
+  piernaJunto:()=>({atras:'<rect x="150" y="-4" width="16" height="118" rx="7" fill="var(--ropa2)"/><rect x="146" y="110" width="24" height="8" rx="4" fill="var(--zapato)"/>',delante:''}),
+  correa:()=>({delante:'<path d="M138,50 Q156,92 176,0" fill="none" stroke="var(--correa)" stroke-width="2.4" stroke-linecap="round"/><line x1="134" y1="44" x2="142" y2="54" stroke="var(--correa)" stroke-width="4" stroke-linecap="round"/>'}),
+  manta:()=>({fondo:'<rect x="20" y="108" width="158" height="12" rx="4" fill="var(--manta)"/><path d="M50,108 v12 M90,108 v12 M130,108 v12" stroke="var(--manta2)" stroke-width="3"/>'}),
+  ladrido:()=>({delante:'<path d="M150,38 q5,5 0,11 M156,33 q8,9 0,20 M162,28 q11,13 0,30" fill="none" stroke="var(--trazo)" stroke-width="2" stroke-linecap="round"/>'})
+};
+
+const LUGARES=[['casa','Casa'],['patio','Patio'],['calle','Calle'],['parque','Parque']];
+const LUGAR_N={};LUGARES.forEach(l=>{LUGAR_N[l[0]]=l[1];});
+const TIPOS={vacuna:'Vacuna',int:'Desparasitación interna',ext:'Desparasitación externa',leish:'Prevención de leishmania',revision:'Revisión veterinaria',otro:'Otro'};
+const PLAN=[
+  {n:1,t:'Cimientos',ids:['marcador','mirame','toca','ven'],nota:'Repasa «Sienta» y «Tumba» al empezar cada sesión. La llamada, solo dentro de casa.'},
+  {n:2,t:'Primeras patas',ids:['pata','otra','dejalo','quieto'],nota:'«Quieto»: solo duración, hasta 10 s, contigo pegado a ella.'},
+  {n:3,t:'Movimiento',ids:['gira','cinco','ven','trae','busca'],nota:'Llamada en el parque con correa larga. De «Trae y suelta», solo el «Suelta». «Busca» para los días sin paseo largo.'},
+  {n:4,t:'Cuerpo y calma',ids:['reverencia','atras','sitio','junto','espera'],nota:'Paseos cortos solo para practicar «Junto». «Espera» en cada salida a la calle.'},
+  {n:5,t:'Suelo',ids:['rueda','saluda','quieto','mano'],nota:'«Quieto»: ahora distancia, de 1 a 5 pasos.'},
+  {n:6,t:'Espectáculo',ids:['pum','ocho','trae'],nota:'«Trae y suelta» completo: lanzar, traer y soltar.'},
+  {n:7,t:'Cabeza',ids:['tapate','nombre','recoge','ven','silencio'],nota:'Llamada con distracciones: otros perros a lo lejos, pelotas.'},
+  {n:8,t:'Rutina y calle',ids:['cierra','quieto','junto','espera'],nota:'Encadena tres trucos seguidos (Gira, Reverencia, ¡Pum!) y premia al final. Practica todo en un sitio nuevo.'}
+];
+const VARIACIONES=['Pídelo con las manos quietas: solo la palabra.','Pídelo sentado en una silla.','Pídelo a dos pasos de distancia.','Pídelo de rodillas.','Pídelo mirando hacia otro lado.','Cambia de habitación antes del siguiente.','Pídelo con alguien pasando cerca.','Pídelo con la correa puesta.'];
+const POR_ID={};TRUCOS.forEach(t=>{POR_ID[t.id]=t;});BASICOS.forEach(t=>{POR_ID[t.id]=t;});
+const ETQ={nuevo:'Sin empezar',curso:'En curso',hecho:'Dominado'};
+
+/* ---------- Estado y guardado ---------- */
+const LS='cuaderno-pastora-v1';
+let state=normaliza({});
+function normaliza(d){const sa=d.salud||{},ru=d.rutina||{};return{nombre:d.nombre||'',nacimiento:d.nacimiento||'',semana:d.semana||1,clic:!!d.clic,trucos:d.trucos||{},diario:d.diario||{},repasoPerfecto:!!d.repasoPerfecto,lugar:LUGAR_N[d.lugar]?d.lugar:'casa',hora:d.hora||'19:00',rutina:{ids:Array.isArray(ru.ids)?ru.ids:[],completas:ru.completas||0,limpias:ru.limpias||0},salud:{pesos:Array.isArray(sa.pesos)?sa.pesos:[],eventos:Array.isArray(sa.eventos)?sa.eventos:[]},actualizado:d.actualizado||0};}
+function lsLoad(){try{const r=localStorage.getItem(LS);if(r){const d=JSON.parse(r);if(d&&typeof d==='object')state=normaliza(d);}}catch(e){}}
+function lsSave(){try{localStorage.setItem(LS,JSON.stringify(state));}catch(e){}}
+function tr(id){const v=state.trucos[id]||{};return{estado:v.estado||'nuevo',paso:v.paso||0,sesiones:v.sesiones||0,ultima:v.ultima||null,hist:v.hist||[],nota:v.nota||'',record:v.record||0,sitios:Array.isArray(v.sitios)?v.sitios:[]};}
+function setTr(id,patch,sinRender){state.trucos[id]=Object.assign(tr(id),patch);save(sinRender);}
+
+let docRef=null,writing=false,pending=false,wtimer=null,modo='personal',miId=null,esDueno=false,userNs=null,dbNs=null,dlNs=null,remotoJSON=null,existeRemoto=false,soloLectura=false,unsub=null;
+function setSync(t){const el=document.getElementById('sync');if(!el)return;el.textContent=t==='familia'?'Modo familia: progreso compartido con quien tenga la app.':t==='cuenta'?'Progreso guardado en tu cuenta: lo verás en el móvil y en el ordenador.':t==='lectura'?'Solo puedes ver este progreso. Para apuntar sesiones, pide permiso de edición.':'Progreso guardado en este dispositivo.';}
+function poda(){const ks=Object.keys(state.diario).sort();if(ks.length>200)ks.slice(0,ks.length-200).forEach(k=>{delete state.diario[k];});}
+function save(sinRender){state.actualizado=Date.now();poda();lsSave();programa();if(!sinRender)render();}
+function programa(){if(docRef&&!soloLectura){clearTimeout(wtimer);wtimer=setTimeout(()=>{wtimer=null;flush();},700);}}
+function parche(){
+  const r=remotoJSON?JSON.parse(remotoJSON):{},cur=JSON.parse(JSON.stringify(state)),p={};let n=0;
+  Object.keys(cur).forEach(k=>{
+    if(k==='trucos'||k==='diario'){const sub={},rs=r[k]||{};Object.keys(cur[k]).forEach(j=>{if(JSON.stringify(cur[k][j])!==JSON.stringify(rs[j]))sub[j]=cur[k][j];});if(Object.keys(sub).length){p[k]=sub;n++;}}
+    else if(JSON.stringify(cur[k])!==JSON.stringify(r[k])){p[k]=cur[k];n++;}
+  });
+  return n?p:null;
+}
+function flush(){
+  if(!docRef||soloLectura)return;if(writing){pending=true;return;}
+  let op;const enviado=JSON.stringify(state);
+  if(!existeRemoto){const datos=JSON.parse(enviado);if(modo==='familia')datos.activo=true;op=docRef.set(datos);}
+  else{const p=parche();if(!p)return;if(modo==='familia')p.activo=true;op=docRef.update(p);}
+  writing=true;
+  op.then(()=>{existeRemoto=true;remotoJSON=enviado;setSync(modo==='familia'?'familia':'cuenta');})
+    .catch(e=>{if(e&&e.code==='invalid_argument'){if(existeRemoto){existeRemoto=false;pending=true;}else{soloLectura=true;setSync('lectura');renderFamilia();}}else setSync('local');})
+    .then(()=>{writing=false;if(pending){pending=false;flush();}});
+}
+function escucha(ref){
+  if(unsub)unsub();
+  unsub=ref.onSnapshot(sn=>{
+    if(!sn.exists||(sn.metadata&&sn.metadata.hasPendingWrites))return;
+    const d=sn.data();if(!d)return;
+    if(modo==='familia'&&d.activo===false){salirFamilia();return;}
+    const limpio=normaliza(JSON.parse(JSON.stringify(d)));remotoJSON=JSON.stringify(limpio);existeRemoto=true;
+    if(wtimer||writing||pending)return;
+    if(remotoJSON!==JSON.stringify(state)){state=limpio;lsSave();render();}
+  },()=>setSync('local'));
+}
+function usaDoc(ref,datos,tipo){
+  docRef=ref;modo=tipo;existeRemoto=!!datos;soloLectura=false;
+  if(datos){const l=normaliza(JSON.parse(JSON.stringify(datos)));remotoJSON=JSON.stringify(l);
+    if(tipo==='familia'||(l.actualizado||0)>=(state.actualizado||0)){state=l;lsSave();}}
+  else remotoJSON=null;
+  if(remotoJSON!==JSON.stringify(state)&&state.actualizado)flush();
+  setSync(tipo==='familia'?'familia':'cuenta');escucha(ref);render();
+}
+function conectar(){
+  if(!(window.claude&&window.claude.use))return;
+  window.claude.use('downloads').then(d=>{dlNs=d;}).catch(()=>{});
+  Promise.all([window.claude.use('db'),window.claude.use('user')]).then(([db,user])=>{
+    if(!db||!user)return null;dbNs=db;userNs=user;
+    return Promise.all([user.id(),user.isOwner()]).then(([uid,own])=>{
+      miId=uid;esDueno=!!own;
+      const fam=db.doc('familia/cuaderno');
+      return fam.get().then(fs=>{
+        const fd=fs.exists?fs.data():null;
+        if(fd&&fd.activo){usaDoc(fam,fd,'familia');return;}
+        if(!uid){render();return;}
+        const ref=db.doc('data/users/'+uid+'/cuaderno');
+        return ref.get().then(sn=>{usaDoc(ref,sn.exists?sn.data():null,'personal');});
+      });
+    });
+  }).catch(()=>setSync('local'));
+}
+function activarFamilia(){
+  if(!dbNs)return;const ref=dbNs.doc('familia/cuaderno');const datos=JSON.parse(JSON.stringify(state));datos.activo=true;
+  ref.set(datos).then(()=>usaDoc(ref,datos,'familia')).catch(()=>{const b=document.getElementById('familia');if(b)b.insertAdjacentHTML('beforeend','<p class="error-txt">No se ha podido activar. Prueba otra vez.</p>');});
+}
+function desactivarFamilia(){
+  if(!dbNs||!miId)return;const fam=dbNs.doc('familia/cuaderno'),per=dbNs.doc('data/users/'+miId+'/cuaderno');const datos=JSON.parse(JSON.stringify(state));
+  per.set(datos).then(()=>fam.update({activo:false})).then(()=>usaDoc(per,datos,'personal')).catch(()=>{const b=document.getElementById('familia');if(b)b.insertAdjacentHTML('beforeend','<p class="error-txt">No se ha podido cambiar. Prueba otra vez.</p>');});
+}
+function salirFamilia(){
+  if(!dbNs||!miId){modo='personal';docRef=null;if(unsub)unsub();unsub=null;setSync('local');render();return;}
+  const per=dbNs.doc('data/users/'+miId+'/cuaderno');per.get().then(sn=>usaDoc(per,sn.exists?sn.data():null,'personal')).catch(()=>setSync('local'));
+}
+
+/* ---------- Fechas, diario y logros ---------- */
+function clave(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function fecha(k){const p=k.split('-');return new Date(+p[0],+p[1]-1,+p[2],12);}
+function corta(d){return d.getDate()+'/'+(d.getMonth()+1);}
+function mediodia(){const d=new Date();d.setHours(12,0,0,0);return d;}
+function registraDia(min,a,i){const k=clave(new Date());const e=Object.assign({s:0,m:0,a:0,i:0},state.diario[k]);e.s+=1;e.m=Math.round((e.m+min)*10)/10;e.a+=a;e.i+=i;if(miId){e.por=Object.assign({},e.por);e.por[miId]=(e.por[miId]||0)+1;}state.diario[k]=e;}
+function equipo(){const ids={};Object.values(state.diario).forEach(e=>{Object.keys(e.por||{}).forEach(id=>{ids[id]=1;});});return Object.keys(ids).length>=2;}
+function activo(k){const e=state.diario[k];return !!(e&&e.s>0);}
+function rachas(){
+  const dias=Object.keys(state.diario).filter(activo).sort();
+  let mejor=0,run=0,prev=null;
+  dias.forEach(k=>{const d=fecha(k);const dif=prev?(d-prev)/864e5:0;run=(prev&&dif>0.5&&dif<1.5)?run+1:1;if(run>mejor)mejor=run;prev=d;});
+  let actual=0;const d=mediodia();
+  if(!activo(clave(d)))d.setDate(d.getDate()-1);
+  while(activo(clave(d))){actual++;d.setDate(d.getDate()-1);}
+  return{actual,mejor};
+}
+function totales(){let s=0,m=0,a=0,i=0;Object.values(state.diario).forEach(e=>{s+=e.s||0;m+=e.m||0;a+=e.a||0;i+=e.i||0;});const sesTr=TRUCOS.reduce((x,t)=>x+tr(t.id).sesiones,0);return{s:Math.max(s,sesTr),m,a,i};}
+function dominados(){return TRUCOS.filter(t=>tr(t.id).estado==='hecho').length;}
+function logros(){
+  const nd=dominados(),tot=totales(),r=rachas();
+  const ocho=TRUCOS.some(t=>tr(t.id).hist.some(h=>h.i>=10&&h.a/h.i>=0.8));
+  const todos=ids=>ids.every(id=>tr(id).estado==='hecho');
+  return[
+    {s:'1',n:'Primera sesión',d:'Empezar a entrenar',ok:tot.s>=1},
+    {s:'8/10',n:'Ocho de diez',d:'Una sesión de 8 de 10 o más',ok:ocho},
+    {s:'¡Sí!',n:'Cimientos',d:'Marcador, Mírame y Toca',ok:todos(['marcador','mirame','toca'])},
+    {s:'3',n:'Racha de 3',d:'Tres días seguidos',ok:r.mejor>=3},
+    {s:'7',n:'Racha de 7',d:'Una semana entera',ok:r.mejor>=7},
+    {s:'5',n:'Cinco trucos',d:'Cinco dominados',ok:nd>=5},
+    {s:'10',n:'Diez trucos',d:'Diez dominados',ok:nd>=10},
+    {s:'Ven',n:'De calle',d:'Toda la obediencia útil',ok:todos(TRUCOS.filter(t=>t.nivel==='ob').map(t=>t.id))},
+    {s:'100',n:'Cien aciertos',d:'100 aciertos en total',ok:tot.a>=100},
+    {s:'60′',n:'Una hora',d:'60 minutos entrenando',ok:tot.m>=60},
+    {s:'10/10',n:'Repaso limpio',d:'Repaso de 10 o más sin fallo',ok:state.repasoPerfecto},
+    {s:'1·2·3',n:'Rutina limpia',d:'Una rutina entera sin fallos',ok:(state.rutina.limpias||0)>=1},
+    {s:'4/4',n:'En todas partes',d:'Un truco en casa, patio, calle y parque',ok:TRUCOS.some(t=>tr(t.id).sitios.length>=4)},
+    {s:'2+',n:'En equipo',d:'Dos personas entrenándola',ok:equipo()},
+    {s:String(TRUCOS.length),n:'Cuaderno completo',d:'Los '+TRUCOS.length+' trucos',ok:nd>=TRUCOS.length}
+  ];
+}
+function meses(){
+  if(!state.nacimiento)return null;const p=state.nacimiento.split('-');const y=+p[0],m=+p[1];if(!y||!m)return null;
+  const n=new Date();const r=(n.getFullYear()-y)*12+(n.getMonth()+1-m);return r>=0&&r<300?r:null;
+}
+function edadTxt(m){if(m==null)return'casi 1 año';if(m<1)return'menos de un mes';if(m<12)return m+(m===1?' mes':' meses');const a=Math.floor(m/12),r=m%12;return a+(a===1?' año':' años')+(r?' y '+r+(r===1?' mes':' meses'):'');}
+
+/* ---------- Render ---------- */
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function marca(e){return '<span class="marca '+(e==='curso'?'curso':e==='hecho'?'hecho':'')+'" aria-hidden="true"></span>';}
+function chip(id){const t=POR_ID[id];return '<button type="button" class="chip" data-act="abrir" data-id="'+id+'">'+marca(tr(id).estado)+esc(t.nombre)+'</button>';}
+let filtro='todos',tabActual='trucos',abierto=null;
+
+function render(){
+  renderCab();renderLista();renderPlan();renderDiario();renderSalud();
+  if(abierto){const a=document.activeElement;if(!(a&&a.id==='nota'))renderDetalle();renderPie();}
+}
+function renderCab(){
+  const n=state.nombre.trim();
+  document.getElementById('titulo').textContent=n?('Cuaderno de '+n):'Cuaderno de tu pastora';
+  const m=meses();
+  document.getElementById('edad').textContent='Pastora alemana · '+edadTxt(m);
+  const inp=document.getElementById('nombre');if(document.activeElement!==inp)inp.value=state.nombre;
+  const nac=document.getElementById('nacimiento');if(document.activeElement!==nac)nac.value=state.nacimiento;
+  let html='';TRUCOS.forEach(t=>{const e=tr(t.id).estado;html+='<i class="'+(e==='hecho'?'hecho':e==='curso'?'curso':'')+'"></i>';});
+  const pal=document.getElementById('palotes');pal.innerHTML=html;pal.style.gridTemplateColumns='repeat('+TRUCOS.length+',1fr)';
+  document.getElementById('dominados').textContent=dominados();
+  document.getElementById('dominados-txt').textContent='de '+TRUCOS.length+' trucos dominados';
+  const r=rachas(),rc=document.getElementById('racha');
+  rc.hidden=r.actual<1;rc.querySelector('span').textContent='Racha: '+r.actual+(r.actual===1?' día':' días');
+  const s=PLAN[(state.semana||1)-1]||PLAN[0];
+  document.getElementById('sem-eyebrow').textContent='Semana '+s.n+' de 8 · esta semana';
+  document.getElementById('sem-h').textContent=s.t;
+  document.getElementById('sem-chips').innerHTML=s.ids.map(chip).join('');
+  document.getElementById('sem-nota').textContent=s.nota;
+  const eh=state.diario[clave(new Date())];const sh=eh?eh.s:0;const hoyEl=document.getElementById('hoy');
+  hoyEl.className='hoy'+(sh>=2?' ok':'');
+  hoyEl.innerHTML='<span class="dots" aria-hidden="true">'+[0,1,2].map(k=>'<i class="'+(k<sh?'s':'')+'"></i>').join('')+'</span><span><b>Hoy: '+sh+(sh===1?' sesión':' sesiones')+'</b> · '+(sh>=2?'objetivo cumplido':'objetivo: 2–3 cortas')+'</span>';
+  const sig=s.ids.find(id=>tr(id).estado!=='hecho');
+  let acc='';
+  if(sig){const t=POR_ID[sig],v=tr(sig);acc+='<button type="button" class="entrenar" data-act="abrir" data-id="'+sig+'"><span>Entrenar ahora: '+esc(t.nombre)+'<small>Paso '+(v.paso+1)+' de '+t.pasos.length+' · '+esc(t.pasos[v.paso])+'</small></span><span class="flecha" aria-hidden="true">›</span></button>';}
+  else acc+='<p class="completa">Semana completada. Pasa a la siguiente en el plan.</p>';
+  const np=poolRepaso().length;
+  acc+='<button type="button" class="entrenar sec" data-act="repaso"><span>Repaso aleatorio<small>'+np+' cosas que ya sabe, al azar, para que no se las aprenda de memoria</small></span><span class="flecha" aria-hidden="true">›</span></button>';
+  if(poolRutina().length>=3){const ri=state.rutina.ids.filter(id=>POR_ID[id]);acc+='<button type="button" class="entrenar sec" data-act="rutina"><span>Rutina de exhibición<small>'+(ri.length?'Tu rutina: '+esc(ri.map(id=>POR_ID[id].nombre).join(', ')):'Encadena de 3 a 6 trucos que ya sabe')+'</small></span><span class="flecha" aria-hidden="true">›</span></button>';}
+  const av=proximasCitas().filter(c=>c.dias<=7)[0];
+  document.getElementById('aviso-salud-box').innerHTML=av?'<button type="button" class="aviso-salud'+(av.dias>=0?' pronto':'')+'" data-act="tab" data-tab="salud" data-ir="1"><span>Salud: '+esc(av.titulo)+'<small>'+cuandoTxt(av.dias)+' · '+fmt(av.proxima)+'</small></span><span class="flecha" aria-hidden="true">›</span></button>':'';
+  document.getElementById('acciones').innerHTML=acc;
+  const el=document.getElementById('edad-linea');
+  if(el)el.textContent=m==null?'Pon su mes de nacimiento arriba y aquí verás en qué etapa está.':('Ahora tiene '+edadTxt(m)+'. '+(m<18?'Todavía está creciendo: cuida los saltos y las superficies.':'Ya es adulta, pero pregunta al veterinario antes de meter saltos o deportes de impacto.'));
+}
+function renderLista(){
+  const cuenta={todos:TRUCOS.length,curso:0,nuevo:0,hecho:0};TRUCOS.forEach(t=>{cuenta[tr(t.id).estado]++;});
+  document.getElementById('filtros').innerHTML=[['todos','Todos'],['curso','En curso'],['nuevo','Pendientes'],['hecho','Dominados']].map(f=>'<button type="button" class="filtro" data-act="filtro" data-f="'+f[0]+'" aria-pressed="'+(filtro===f[0])+'">'+f[1]+' · '+cuenta[f[0]]+'</button>').join('');
+  let html='';
+  NIVELES.forEach(nv=>{
+    const todos=TRUCOS.filter(t=>t.nivel===nv.id);
+    const lista=todos.filter(t=>filtro==='todos'||tr(t.id).estado===filtro);
+    if(!lista.length)return;
+    const h=todos.filter(t=>tr(t.id).estado==='hecho').length;
+    html+='<div class="nivel"><div class="nivel-head"><h2>'+esc(nv.nombre)+'</h2><span class="n">'+h+' / '+todos.length+'</span></div><p class="nivel-nota">'+esc(nv.nota)+'</p><div class="fichas">';
+    lista.forEach(t=>{
+      const v=tr(t.id);const flag=v.estado==='curso'?'<span class="flag">Paso '+(v.paso+1)+'/'+t.pasos.length+'</span>':'';
+      const ns=v.sitios.length;
+      html+='<button type="button" class="ficha" data-act="abrir" data-id="'+t.id+'"><span class="mini" aria-hidden="true">'+dibujo(t.id,'')+'</span><span><span class="nm">'+esc(t.nombre)+'</span><span class="cue">'+esc(t.orden)+' · '+ETQ[v.estado]+(ns?' · '+ns+'/4 sitios':'')+'</span></span><span class="der">'+flag+marca(v.estado)+'<span class="chev" aria-hidden="true">›</span></span></button>';
+    });
+    html+='</div></div>';
+  });
+  if(!Object.keys(state.trucos).length)html='<div class="bienvenida"><b>Empieza aquí</b><p>Con tu pastora no hace falta nada raro: una palabra corta, premios pequeños y sesiones de 5 minutos. Empieza por estos cinco, en este orden: <b>Mírame</b>, <b>Toca</b>, <b>Dame la pata</b>, <b>Gira</b> y <b>A tu sitio</b>.</p></div>'+html;
+  if(!html)html='<p class="vacio">Ningún truco en este grupo todavía.</p>';
+  document.getElementById('lista').innerHTML=html;
+}
+function renderPlan(){
+  document.getElementById('semanas').innerHTML=PLAN.map(s=>{
+    const act=s.n===(state.semana||1);const u=[...new Set(s.ids)];const h=u.filter(id=>tr(id).estado==='hecho').length;
+    return '<div class="sem'+(act?' actual':'')+'"><div class="sem-top"><h3><small>Semana '+s.n+'</small>'+esc(s.t)+'</h3><button type="button" class="btn-sm" data-act="semana" data-n="'+s.n+'">'+(act?'Esta semana':'Marcar como actual')+'</button></div><div class="chips">'+s.ids.map(chip).join('')+'</div><div class="barra" aria-hidden="true"><i style="width:'+Math.round(h/u.length*100)+'%"></i></div><div class="barra-txt">'+h+' de '+u.length+' dominados</div><p>'+esc(s.nota)+'</p></div>';
+  }).join('');
+}
+function renderDiario(){
+  const r=rachas(),tot=totales();
+  const pct=tot.i?Math.round(tot.a/tot.i*100)+' %':'–';
+  document.getElementById('tiles').innerHTML=
+    '<div class="tile dest"><b>'+r.actual+'</b><span>'+(r.actual===1?'día seguido':'días seguidos')+' entrenando</span></div>'+
+    '<div class="tile"><b>'+r.mejor+'</b><span>mejor racha</span></div>'+
+    '<div class="tile"><b>'+tot.s+'</b><span>sesiones en total</span></div>'+
+    '<div class="tile"><b>'+Math.round(tot.m)+'</b><span>minutos entrenando</span></div>'+
+    '<div class="tile"><b>'+tot.a+'</b><span>aciertos</span></div>'+
+    '<div class="tile"><b>'+pct+'</b><span>de acierto</span></div>';
+  const hoy=mediodia();const dow=(hoy.getDay()+6)%7;const lunes=new Date(hoy);lunes.setDate(hoy.getDate()-dow-49);
+  let g='<div class="mapa-grid"><span></span>';
+  for(let w=0;w<8;w++){const d=new Date(lunes);d.setDate(lunes.getDate()+w*7);g+='<span class="wk">'+corta(d)+'</span>';}
+  ['L','M','X','J','V','S','D'].forEach((L,row)=>{
+    g+='<span class="dl">'+L+'</span>';
+    for(let w=0;w<8;w++){
+      const d=new Date(lunes);d.setDate(lunes.getDate()+w*7+row);const k=clave(d);const e=state.diario[k];
+      let cls='cel';if(d>hoy)cls+=' fut';else if(e&&e.s>0)cls+=' n'+Math.min(3,e.s);if(k===clave(hoy))cls+=' hoy';
+      g+='<span class="'+cls+'" title="'+corta(d)+(e&&e.s?': '+e.s+(e.s===1?' sesión':' sesiones')+', '+Math.round(e.m)+' min':'')+'"></span>';
+    }
+  });
+  g+='</div><div class="mapa-ley">Menos <span class="cel"></span><span class="cel n1"></span><span class="cel n2"></span><span class="cel n3"></span> Más</div>';
+  document.getElementById('mapa').innerHTML=g;
+  const ls=logros();const ok=ls.filter(l=>l.ok).length;
+  document.getElementById('logros-txt').textContent=ok+' de '+ls.length+' conseguidos. Se desbloquean solos según entrenáis.';
+  document.getElementById('logros').innerHTML=ls.map(l=>'<div class="logro'+(l.ok?' ok':'')+'"><div class="sello">'+esc(l.s)+'</div><b>'+esc(l.n)+'</b><span>'+esc(l.d)+'</span></div>').join('');
+  renderFamilia();renderQuien();renderRec();
+}
+
+/* ---------- Ficha de truco ---------- */
+let MIN=5;
+function videosHTML(t){
+  const vs=VIDEOS[t.id]||[];
+  let html=vs.length?'<div class="videos">'+vs.map(x=>'<a class="video" href="https://www.youtube.com/watch?v='+x[0]+'" target="_blank" rel="noopener"><span class="pantalla" aria-hidden="true"><i>VÍDEO</i></span><span><span class="vt">'+esc(x[1])+'</span><span class="vm">YouTube'+(x[2]?' · '+esc(x[2]):'')+'</span></span></a>').join('')+'</div>':'';
+  html+='<a class="mas-videos" href="https://www.youtube.com/results?search_query='+encodeURIComponent(t.video)+'" target="_blank" rel="noopener">'+(vs.length?'Buscar más vídeos de este truco ↗':'Buscar vídeos de este truco en YouTube ↗')+'</a>';
+  return html;
+}
+function histHTML(v){
+  const h=v.hist||[];
+  if(!h.length)return '<p class="hist-vacio">Aún no hay sesiones. Al terminar la primera verás aquí el porcentaje de aciertos de cada una.</p>';
+  const W=300,H=100,x0=32,y0=16,base=74,alto=base-y0,col=(W-x0-4)/10,bw=col-6,yMeta=base-alto*0.8;
+  let s='<div class="hist"><svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Porcentaje de aciertos en las últimas '+h.length+' sesiones">';
+  s+='<line class="base" x1="'+x0+'" x2="'+(W-4)+'" y1="'+base+'" y2="'+base+'"/><line class="meta" x1="'+x0+'" x2="'+(W-4)+'" y1="'+yMeta.toFixed(1)+'" y2="'+yMeta.toFixed(1)+'"/>';
+  s+='<text x="0" y="'+(yMeta+3).toFixed(1)+'">80 %</text><text x="0" y="'+(base+3)+'">0 %</text>';
+  h.forEach((r,k)=>{
+    const p=r.i?r.a/r.i:0,bh=Math.max(2,alto*p),x=x0+k*col+3,cx=(x+bw/2).toFixed(1);
+    s+='<rect class="bar'+(p>=0.8?' ok':'')+'" x="'+x.toFixed(1)+'" y="'+(base-bh).toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2"><title>'+r.a+' de '+r.i+' ('+esc(r.f)+')</title></rect>';
+    s+='<text x="'+cx+'" y="'+(base+13)+'" text-anchor="middle">'+esc(r.f)+'</text>';
+    if(k===h.length-1)s+='<text class="ult" x="'+cx+'" y="'+(base-bh-4).toFixed(1)+'" text-anchor="middle">'+Math.round(p*100)+'%</text>';
+  });
+  return s+'</svg><p class="hist-cap">Últimas '+h.length+' sesiones. En verde, las de 8 de 10 o más.</p></div>';
+}
+function abrir(id){
+  if(!POR_ID[id]||!TRUCOS.includes(POR_ID[id]))return;
+  abierto=id;const d=document.getElementById('detalle');d.hidden=false;bloquea();
+  renderDetalle();renderPie();d.scrollTop=0;const b=document.getElementById('btn-volver');if(b)b.focus();
+}
+function cerrar(){abierto=null;document.getElementById('detalle').hidden=true;bloquea();render();}
+function renderDetalle(){
+  const t=POR_ID[abierto];if(!t)return;const v=tr(t.id);const nv=NIVELES.find(n=>n.id===t.nivel);
+  const pasos=t.pasos.map((p,i)=>{const cls=i<v.paso?'ya':i===v.paso?'aqui':'';return '<li><button type="button" class="paso '+cls+'" data-act="paso" data-i="'+i+'"><span class="num">'+(i+1)+'</span><span>'+(cls==='aqui'?'<span class="aqui-tag">Estáis aquí</span>':'')+esc(p)+'</span></button></li>';}).join('');
+  const ult=v.ultima?(' · Última: '+v.ultima.a+' de '+v.ultima.i+' aciertos ('+esc(v.ultima.f)+')'):'';
+  document.getElementById('det-cuerpo').innerHTML=
+    '<div class="det-bar"><button type="button" class="volver" id="btn-volver" data-act="volver">‹ Trucos</button><span class="det-nivel">'+esc(nv.nombre)+'</span></div>'+
+    '<div class="det-titulo"><h2 id="det-nombre">'+esc(t.nombre)+'</h2></div>'+
+    '<div class="det-lamina lamina">'+dibujo(t.id,'Así queda: '+t.nombre)+'</div>'+
+    '<div class="orden"><div><small>Palabra</small><strong>'+esc(t.orden)+'</strong></div><div class="g"><small>Gesto</small><strong>'+esc(t.gesto)+'</strong></div></div>'+
+    (t.req?'<p class="req">Antes debe saber: <b>'+esc(t.req)+'</b></p>':'')+
+    '<div class="estado" role="group" aria-label="Estado del truco">'+['nuevo','curso','hecho'].map(e=>'<button type="button" data-act="estado" data-e="'+e+'" aria-pressed="'+(v.estado===e)+'">'+ETQ[e]+'</button>').join('')+'</div>'+
+    '<div class="det-sec"><h3>Míralo antes de empezar</h3>'+videosHTML(t)+'</div>'+
+    '<div class="det-sec"><h3>Paso a paso</h3><ol class="pasos">'+pasos+'</ol><p class="hint">Toca un paso para marcarlo como el actual. La sesión trabaja ese paso.</p></div>'+
+    '<div class="notas">'+(t.cuidado?'<div class="nota-box cuid"><b>Cuidado</b>'+esc(t.cuidado)+'</div>':'')+'<div class="nota-box tip"><b>Truco del oficio</b>'+esc(t.consejo)+'</div><div class="nota-box ojo"><b>Ojo con</b>'+esc(t.ojo)+'</div></div>'+
+    '<div class="det-sec"><h3>¿Dónde le sale?</h3><div class="sitios" role="group" aria-label="Dónde le sale">'+LUGARES.map(l=>'<button type="button" class="sitio" data-act="sitio" data-l="'+l[0]+'" aria-pressed="'+v.sitios.includes(l[0])+'">'+l[1]+'</button>').join('')+'</div><p class="hint">Está aprendido de verdad cuando le sale en los cuatro. Se marca solo cuando una sesión llega a 8 de 10 en ese sitio.</p></div>'+
+    (t.guia?'<div class="enlaces"><a class="btn-link" href="'+t.guia+'" target="_blank" rel="noopener">Guía escrita en '+esc(t.guiaN)+' ↗</a></div>':'')+
+    '<div class="det-sec"><h3>Tus notas</h3><textarea id="nota" placeholder="Qué le cuesta, qué premio le funciona, dónde lo habéis practicado…">'+esc(v.nota)+'</textarea></div>'+
+    '<div class="det-sec"><h3>Sus sesiones</h3>'+histHTML(v)+'<p class="stats">Sesiones: '+v.sesiones+ult+(t.dur&&v.record?' · Récord de aguante: '+Math.floor(v.record)+' s':'')+'</p></div>';
+}
+function renderPie(){
+  const t=POR_ID[abierto];if(!t)return;const v=tr(t.id);
+  document.getElementById('pie').innerHTML='<p class="pie-paso"><b>Paso '+(v.paso+1)+':</b> '+esc(t.pasos[v.paso])+'</p><div class="mins" role="group" aria-label="Minutos">'+[3,5,10].map(m=>'<button type="button" data-act="min" data-m="'+m+'" aria-pressed="'+(m===MIN)+'">'+m+'′</button>').join('')+'</div><button type="button" class="go" data-act="go">Empezar sesión</button>';
+}
+
+/* ---------- Audio y pantalla ---------- */
+let ac=null,wl=null;
+function audio(){try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume();}catch(e){}}
+function clicker(){try{if(!ac)return;audio();const len=Math.floor(ac.sampleRate*0.014),buf=ac.createBuffer(1,len,ac.sampleRate),d=buf.getChannelData(0);for(let k=0;k<len;k++)d[k]=(Math.random()*2-1)*Math.pow(1-k/len,4);const src=ac.createBufferSource();src.buffer=buf;const f=ac.createBiquadFilter();f.type='highpass';f.frequency.value=1800;src.connect(f);f.connect(ac.destination);src.start();}catch(e){}}
+function pitido(){try{if(!ac)return;audio();[0,0.45].forEach(dl=>{const o=ac.createOscillator(),g=ac.createGain();o.frequency.value=880;g.gain.value=0.12;o.connect(g);g.connect(ac.destination);o.start(ac.currentTime+dl);o.stop(ac.currentTime+dl+0.3);});}catch(e){}try{if(navigator.vibrate)navigator.vibrate([200,100,200]);}catch(e){}}
+function pantallaOn(){try{if(navigator.wakeLock&&!wl)navigator.wakeLock.request('screen').then(l=>{wl=l;}).catch(()=>{});}catch(e){}}
+function pantallaOff(){try{if(wl)wl.release();}catch(e){}wl=null;}
+function bloquea(){const alguno=['detalle','modo','repaso','rapida','rutina'].some(id=>!document.getElementById(id).hidden);document.body.style.overflow=alguno?'hidden':'';}
+function mmss(s){s=Math.max(0,Math.round(s));const m=Math.floor(s/60),r=s%60;return m+':'+(r<10?'0':'')+r;}
+function clicHTML(){return '<label class="clic" for="clic"><input type="checkbox" id="clic"'+(state.clic?' checked':'')+'> Sonido al marcar acierto (opcional)</label>';}
+
+/* ---------- Sesión a pantalla completa ---------- */
+let ses=null,iv=null,ag={on:false,ini:0,ult:null,nuevo:false},agIv=null;
+const METAS=[2,5,10,20,30,60,120];
+function aguanteHTML(v){
+  const rec=v.record||0,meta=METAS.find(x=>x>rec);
+  const num=ag.on?Math.floor((Date.now()-ag.ini)/1000):(ag.ult!=null?Math.floor(ag.ult):0);
+  return '<div class="aguante"><button type="button" data-act="ag" class="'+(ag.on?'on':'')+'">'+(ag.on?'Parar':'Contar aguante')+'</button><span class="ag-num" id="ag-num">'+num+' s</span><span class="ag-meta">'+(ag.nuevo?'<b>¡Récord nuevo!</b> · ':'')+'Récord: '+Math.floor(rec)+' s'+(meta?' · siguiente meta: '+meta+' s':'')+'</span></div>';
+}
+function agToggle(){
+  if(!ses)return;
+  if(!ag.on){ag={on:true,ini:Date.now(),ult:null,nuevo:false};clearInterval(agIv);agIv=setInterval(()=>{const el=document.getElementById('ag-num');if(el&&ag.on)el.textContent=Math.floor((Date.now()-ag.ini)/1000)+' s';},200);}
+  else{clearInterval(agIv);const secs=(Date.now()-ag.ini)/1000;ag.on=false;ag.ult=secs;const v=tr(ses.id);if(secs>=1&&secs>(v.record||0)){setTr(ses.id,{record:Math.round(secs*10)/10},true);ag.nuevo=true;}}
+  renderModo();
+}
+function abrirModo(){
+  audio();clearInterval(agIv);ag={on:false,ini:0,ult:null,nuevo:false};
+  ses={id:abierto,total:MIN*60,resto:MIN*60,fin:Date.now()+MIN*60000,corre:true,arranque:Date.now(),usado:0,a:0,f:0,seq:[],fase:'run'};
+  document.getElementById('modo').hidden=false;bloquea();pantallaOn();renderModo();
+  clearInterval(iv);iv=setInterval(tick,250);
+}
+function tick(){
+  if(!ses||!ses.corre)return;ses.resto=(ses.fin-Date.now())/1000;
+  if(ses.resto<=0){ses.resto=0;ses.corre=false;ses.usado+=(Date.now()-ses.arranque)/1000;clearInterval(iv);pitido();pantallaOff();renderModo();return;}
+  const r=document.getElementById('reloj');if(r)r.textContent=mmss(ses.resto);
+}
+function ventana(){return ses.seq.slice(-10);}
+function renderModo(){
+  const t=POR_ID[ses.id],v=tr(ses.id);const box=document.getElementById('modo-in');
+  if(ses.fase==='fin'){box.innerHTML=ses.resumen;return;}
+  const w=ventana(),ok=w.filter(x=>x).length,listo=w.length>=10&&ok>=8,ultimo=v.paso>=t.pasos.length-1;
+  const dos=ses.seq.length>=2&&!ses.seq[ses.seq.length-1]&&!ses.seq[ses.seq.length-2];
+  let puntos='';for(let k=0;k<10;k++){const x=w[k];puntos+='<i class="'+(x===true?'s':x===false?'n':'')+'"></i>';}
+  let msg='<p class="pf-msg">Marca cada intento. Objetivo: 8 de los últimos 10.</p>';
+  if(ses.resto<=0)msg='<p class="pf-msg">Tiempo. Pídele algo fácil para cerrar y pulsa Terminar.</p>';
+  if(listo)msg='<div class="pf-banner"><b>'+ok+' de los últimos 10. '+(ultimo?'Lo tiene.':'Lista para el siguiente paso.')+'</b>'+(ultimo?(v.estado!=='hecho'?'<button type="button" data-act="m-dom">Marcar como dominado</button>':''):'<button type="button" data-act="m-sig">Pasar al paso '+(v.paso+2)+'</button>')+'</div>';
+  else if(dos)msg='<div class="pf-alerta">Dos fallos seguidos: ayúdala con el gesto o vuelve al paso anterior.</div>';
+  box.innerHTML=
+    '<div class="full-top"><div class="t">'+esc(t.nombre)+'<small>'+esc(t.orden)+' · '+esc(t.gesto)+'</small></div><button type="button" class="cerrar" data-act="m-fin">Terminar</button></div>'+
+    '<div class="lugares" role="group" aria-label="Dónde estáis"><span>Estáis en:</span>'+LUGARES.map(l=>'<button type="button" data-act="lugar" data-l="'+l[0]+'" aria-pressed="'+(state.lugar===l[0])+'">'+l[1]+'</button>').join('')+'</div>'+
+    '<div class="pf-paso"><button type="button" class="nav" data-act="m-prev" aria-label="Paso anterior"'+(v.paso<=0?' disabled':'')+'>‹</button><div><small>Paso '+(v.paso+1)+' de '+t.pasos.length+'</small><p>'+esc(t.pasos[v.paso])+'</p></div><button type="button" class="nav" data-act="m-next" aria-label="Paso siguiente"'+(ultimo?' disabled':'')+'>›</button></div>'+
+    '<div class="pf-reloj"><div class="reloj'+(ses.resto<=0?' fin':'')+'" id="reloj">'+mmss(ses.resto)+'</div>'+(ses.resto>0?'<button type="button" data-act="m-pausa">'+(ses.corre?'Pausa':'Seguir')+'</button>':'')+'</div>'+
+    '<div class="puntos" aria-hidden="true">'+puntos+'</div>'+
+    (t.dur?aguanteHTML(v):'')+
+    '<div class="marcador-txt"><strong>'+ses.a+'</strong> '+(ses.a===1?'acierto':'aciertos')+' · '+ses.f+' '+(ses.f===1?'fallo':'fallos')+'</div>'+
+    msg+clicHTML()+
+    '<div class="grandes"><button type="button" class="ok" data-act="m-ok">✓ Acierto</button><button type="button" class="no" data-act="m-no">✗ Fallo</button></div>';
+}
+function pausaModo(){
+  if(!ses||ses.resto<=0)return;
+  if(ses.corre){ses.corre=false;ses.resto=(ses.fin-Date.now())/1000;ses.usado+=(Date.now()-ses.arranque)/1000;pantallaOff();}
+  else{ses.corre=true;ses.fin=Date.now()+ses.resto*1000;ses.arranque=Date.now();pantallaOn();}
+  renderModo();
+}
+function terminarModo(){
+  if(!ses)return;clearInterval(iv);clearInterval(agIv);ag.on=false;pantallaOff();
+  if(ses.corre)ses.usado+=(Date.now()-ses.arranque)/1000;ses.corre=false;
+  const t=POR_ID[ses.id],v=tr(ses.id),a=ses.a,i=ses.a+ses.f;
+  if(i===0){cerrarModo();return;}
+  const f=corta(new Date());
+  const patch={sesiones:v.sesiones+1,ultima:{a,i,f},hist:v.hist.concat([{a,i,f}]).slice(-10)};if(v.estado==='nuevo')patch.estado='curso';
+  registraDia(ses.usado/60,a,i);
+  setTr(ses.id,patch);
+  const r=a/i,ultimo=v.paso>=t.pasos.length-1;let msg,sube=false;
+  if(i>=10&&r>=0.8){msg=ultimo?'Lo tiene. Pruébalo en otro sitio o márcalo como dominado.':'Llega a 8 de 10: pasa al siguiente paso.';sube=true;}
+  else if(i>=6&&r<0.5)msg='Le está costando. Vuelve al paso anterior o haz este más pequeño.';
+  else if(i<10)msg='Pocas repeticiones para decidir. Repite este paso en la próxima sesión.';
+  else msg='Va bien. Repite este paso hasta llegar a 8 de 10.';
+  let sitioMsg='';
+  if(sube){const ss=tr(ses.id).sitios;if(!ss.includes(state.lugar)){setTr(ses.id,{sitios:ss.concat([state.lugar])},true);sitioMsg='<p class="sub">Apuntado: ya le sale en '+LUGAR_N[state.lugar].toLowerCase()+'.</p>';}}
+  let acc='';
+  if(sube&&!ultimo)acc+='<button type="button" class="prim" data-act="r-sig">Pasar al paso '+(v.paso+2)+'</button>';
+  if(sube&&ultimo&&v.estado!=='hecho')acc+='<button type="button" class="prim" data-act="r-dom">Marcar como dominado</button>';
+  acc+='<button type="button" data-act="r-otra">Otra sesión</button><button type="button" data-act="r-volver">Volver al truco</button>';
+  ses.fase='fin';
+  ses.resumen='<div class="full-top"><div class="t">'+esc(t.nombre)+'<small>Sesión terminada · '+Math.max(1,Math.round(ses.usado/60))+' min</small></div><button type="button" class="cerrar" data-act="r-volver">Cerrar</button></div><div class="resumen"><div class="res">'+a+' de '+i+'</div><p>'+msg+'</p>'+sitioMsg+'<p class="sub">Termina con algo que le salga seguro y un rato de juego.</p>'+acc+'</div>';
+  renderModo();
+}
+function cerrarModo(){clearInterval(iv);clearInterval(agIv);ag.on=false;pantallaOff();ses=null;document.getElementById('modo').hidden=true;bloquea();render();}
+
+/* ---------- Repaso aleatorio ---------- */
+let rep=null;
+function poolRepaso(){return TRUCOS.filter(t=>t.id!=='marcador'&&tr(t.id).estado!=='nuevo').concat(BASICOS);}
+function abrirRepaso(){audio();rep={fase:'inicio',solo:false,a:0,f:0,fallos:{},actual:null,variacion:'',ini:Date.now(),racha:0};document.getElementById('repaso').hidden=false;bloquea();pantallaOn();renderRepaso();}
+function siguienteRepaso(){
+  const pool=poolRepaso();let c=pool[Math.floor(Math.random()*pool.length)];
+  if(pool.length>1){let n=0;while(rep.actual&&c.id===rep.actual.id&&n<10){c=pool[Math.floor(Math.random()*pool.length)];n++;}}
+  rep.actual=c;rep.variacion=Math.random()<0.4?VARIACIONES[Math.floor(Math.random()*VARIACIONES.length)]:'';
+}
+function renderRepaso(){
+  const box=document.getElementById('repaso-in');const pool=poolRepaso();
+  if(rep.fase==='inicio'){
+    const nombres=pool.map(p=>p.nombre);
+    box.innerHTML='<div class="full-top"><div class="t">Repaso aleatorio<small>Para que responda a la palabra y no a la rutina</small></div><button type="button" class="cerrar" data-act="p-cerrar">Cerrar</button></div>'+
+      '<div class="rep-opc"><p>La app te dirá qué pedirle, al azar. Tú marcas si lo hace a la primera.</p><p class="variacion">Entran <b>'+pool.length+'</b>: '+esc(nombres.join(', '))+'.</p></div>'+
+      '<div class="rep-opc"><label class="clic" for="solo"><input type="checkbox" id="solo"'+(rep.solo?' checked':'')+'> Solo con la palabra, sin gesto</label>'+clicHTML()+'</div>'+
+      '<p class="variacion">Entran los trucos en curso o dominados, más «Sienta» y «Tumba».</p>'+
+      '<div class="grandes"><button type="button" class="ok" data-act="p-start" style="grid-column:1 / -1">Empezar repaso</button></div>';
+    return;
+  }
+  if(rep.fase==='fin'){box.innerHTML=rep.resumen;return;}
+  const c=rep.actual;const n=rep.a+rep.f;
+  box.innerHTML='<div class="full-top"><div class="t">Repaso aleatorio<small>'+(n?rep.a+' de '+n+' a la primera'+(rep.racha>=3?' · '+rep.racha+' seguidos':''):'Marca si lo hace a la primera')+'</small></div><button type="button" class="cerrar" data-act="p-fin">Terminar</button></div>'+
+    '<div class="cue-card"><div class="lamina">'+dibujo(c.id,c.nombre)+'</div><div class="pide">Pídele</div><div class="cue">'+esc(c.orden)+'</div><div class="gesto">'+(rep.solo?'Solo la palabra, manos quietas':'Gesto: '+esc(c.gesto))+'</div></div>'+
+    (rep.variacion?'<p class="variacion"><b>Para ponerlo difícil:</b> '+esc(rep.variacion)+'</p>':'<p class="variacion">Di la palabra una vez y espera 3 segundos.</p>')+
+    '<div class="grandes tres"><button type="button" class="ok" data-act="p-ok">✓ Lo hizo</button><button type="button" class="no" data-act="p-no">✗ No</button><button type="button" class="salta" data-act="p-skip">Saltar este</button></div>';
+}
+function terminarRepaso(){
+  const n=rep.a+rep.f;pantallaOff();
+  if(n===0){cerrarRepaso();return;}
+  const min=(Date.now()-rep.ini)/60000;registraDia(min,rep.a,n);
+  if(n>=10&&rep.f===0)state.repasoPerfecto=true;
+  save();
+  const fl=Object.keys(rep.fallos).sort((x,y)=>rep.fallos[y]-rep.fallos[x]);
+  const lista=fl.length?'<div class="rep-lista">Para repasar: '+fl.map(id=>'<b>'+esc(POR_ID[id].nombre)+'</b>'+(rep.fallos[id]>1?' ('+rep.fallos[id]+' fallos)':'')).join(', ')+'.</div>':'<div class="rep-lista"><b>Sin fallos.</b> Prueba el próximo repaso solo con la palabra o en otro sitio.</div>';
+  const pct=Math.round(rep.a/n*100);
+  rep.fase='fin';
+  rep.resumen='<div class="full-top"><div class="t">Repaso terminado<small>'+Math.max(1,Math.round(min))+' min · '+pct+' % a la primera</small></div><button type="button" class="cerrar" data-act="p-cerrar">Cerrar</button></div><div class="resumen"><div class="res">'+rep.a+' de '+n+'</div>'+lista+'<button type="button" class="prim" data-act="p-otra">Otro repaso</button><button type="button" data-act="p-cerrar">Volver</button></div>';
+  renderRepaso();
+}
+function cerrarRepaso(){pantallaOff();rep=null;document.getElementById('repaso').hidden=true;bloquea();render();}
+
+/* ---------- Marcar de golpe lo que sabe ---------- */
+function abrirRapida(){document.getElementById('rapida').hidden=false;bloquea();renderRapida();document.getElementById('rapida').scrollTop=0;}
+function renderRapida(){
+  let html='<div class="full-top"><div class="t">¿Qué sabe ya?<small>Márcalo y pasa directamente a lo nuevo</small></div><button type="button" class="cerrar" data-act="q-cerrar">Listo</button></div>';
+  NIVELES.forEach(nv=>{
+    const l=TRUCOS.filter(t=>t.nivel===nv.id);
+    html+='<div class="rap-grupo"><h3>'+esc(nv.nombre)+'</h3><div class="rap-lista">'+l.map(t=>{const e=tr(t.id).estado;return '<div class="rap"><div><b>'+esc(t.nombre)+'</b><span>'+esc(t.orden)+'</span></div><div class="seg" role="group" aria-label="'+esc(t.nombre)+'">'+[['nuevo','No'],['curso','A medias'],['hecho','Sí']].map(o=>'<button type="button" data-act="q-est" data-id="'+t.id+'" data-e="'+o[0]+'" aria-pressed="'+(e===o[0])+'">'+o[1]+'</button>').join('')+'</div></div>';}).join('')+'</div></div>';
+  });
+  html+='<button type="button" class="listo" data-act="q-cerrar">Listo</button>';
+  const cont=document.getElementById('rapida'),sc=cont.scrollTop;document.getElementById('rapida-in').innerHTML=html;cont.scrollTop=sc;
+}
+function cerrarRapida(){document.getElementById('rapida').hidden=true;bloquea();render();}
+
+/* ---------- Compartir ---------- */
+function resumenTexto(){
+  const n=state.nombre.trim()||'Mi pastora',m=meses();
+  const dom=TRUCOS.filter(t=>tr(t.id).estado==='hecho').map(t=>t.nombre);
+  const cur=TRUCOS.filter(t=>tr(t.id).estado==='curso').map(t=>t.nombre+' (paso '+(tr(t.id).paso+1)+' de '+t.pasos.length+')');
+  const tot=totales(),r=rachas();
+  let s=n+', pastora alemana'+(m!=null?' de '+edadTxt(m):'')+'\n';
+  s+='Domina '+dom.length+' de '+TRUCOS.length+' trucos'+(dom.length?': '+dom.join(', '):'')+'.\n';
+  if(cur.length)s+='Aprendiendo: '+cur.join(', ')+'.\n';
+  s+=tot.s+' sesiones y '+Math.round(tot.m)+' minutos de entrenamiento'+(tot.i?', con un '+Math.round(tot.a/tot.i*100)+' % de aciertos':'')+'. Racha actual: '+r.actual+(r.actual===1?' día':' días')+' (la mejor, '+r.mejor+').';
+  const ps=state.salud.pesos.slice().sort((x,y)=>x.f<y.f?-1:1);if(ps.length){const u=ps[ps.length-1];s+='\nÚltimo peso: '+String(u.kg).replace('.',',')+' kg ('+fmt(u.f)+').';}
+  return s;
+}
+function copiar(){
+  const txt=resumenTexto(),ta=document.getElementById('resumen-txt'),lbl=document.getElementById('copiar-lbl');
+  ta.value=txt;
+  const muestra=()=>{ta.hidden=false;ta.focus();ta.select();lbl.innerHTML='Selecciona el texto y cópialo<small>Este navegador no deja copiar directamente</small>';};
+  try{navigator.clipboard.writeText(txt).then(()=>{ta.hidden=false;lbl.innerHTML='Copiado<small>Pégalo en WhatsApp o donde quieras</small>';}).catch(muestra);}catch(er){muestra();}
+}
+
+/* ---------- Rutina de exhibición ---------- */
+let rut=null;
+function poolRutina(){const h=TRUCOS.filter(t=>t.id!=='marcador'&&tr(t.id).estado==='hecho'),c=TRUCOS.filter(t=>t.id!=='marcador'&&tr(t.id).estado==='curso');return h.concat(c).concat(BASICOS);}
+function abrirRutina(){audio();const pool=poolRutina().map(t=>t.id);rut={fase:'elige',sel:state.rutina.ids.filter(id=>pool.includes(id)).slice(0,6),k:0,fallados:[],ini:0};document.getElementById('rutina').hidden=false;bloquea();renderRutina();document.getElementById('rutina').scrollTop=0;}
+function renderRutina(){
+  const box=document.getElementById('rutina-in'),cont=document.getElementById('rutina');
+  if(rut.fase==='elige'){
+    const sc=cont.scrollTop;
+    let h='<div class="full-top"><div class="t">Rutina de exhibición<small>Toca de 3 a 6 trucos en el orden en que se los pedirás</small></div><button type="button" class="cerrar" data-act="u-cerrar">Cerrar</button></div>';
+    h+='<div class="rut-pool">'+poolRutina().map(t=>{const i=rut.sel.indexOf(t.id),e=BASICOS.includes(t)?'hecho':tr(t.id).estado;return '<button type="button" class="rut-op'+(i>=0?' on':'')+'" data-act="u-tog" data-id="'+t.id+'" aria-pressed="'+(i>=0)+'"><span class="rut-n">'+(i>=0?i+1:'')+'</span><span class="mini" aria-hidden="true">'+dibujo(t.id,'')+'</span><span class="rut-t">'+esc(t.nombre)+'<small>'+(e==='hecho'?'Lo sabe':'Aprendiendo')+'</small></span></button>';}).join('')+'</div>';
+    h+='<p class="variacion">Al principio premia cada dos trucos. Cuando salga seguida, premia solo al final, con premio gordo.</p>';
+    h+='<div class="grandes"><button type="button" class="ok" data-act="u-start" style="grid-column:1 / -1"'+(rut.sel.length<3?' disabled':'')+'>'+(rut.sel.length<3?'Elige al menos 3':'Empezar rutina de '+rut.sel.length)+'</button></div>';
+    box.innerHTML=h;cont.scrollTop=sc;return;
+  }
+  if(rut.fase==='run'){
+    const id=rut.sel[rut.k],t=POR_ID[id],nf=rut.fallados.length;
+    box.innerHTML='<div class="full-top"><div class="t">Rutina · '+(rut.k+1)+' de '+rut.sel.length+'<small>'+(nf?nf+(nf===1?' fallo':' fallos'):'Sin fallos de momento')+'</small></div><button type="button" class="cerrar" data-act="u-fin">Terminar</button></div>'+
+      '<div class="rut-prog" aria-hidden="true">'+rut.sel.map((x,i)=>'<i class="'+(i<rut.k?'s':i===rut.k?'a':'')+'"></i>').join('')+'</div>'+
+      '<div class="cue-card"><div class="lamina">'+dibujo(id,t.nombre)+'</div><div class="pide">Pídele</div><div class="cue">'+esc(t.orden)+'</div><div class="gesto">Gesto: '+esc(t.gesto)+'</div></div>'+
+      (rut.k<rut.sel.length-1?'<p class="variacion">Después: <b>'+esc(POR_ID[rut.sel[rut.k+1]].nombre)+'</b></p>':'<p class="variacion"><b>Último.</b> Ten listo el premio gordo.</p>')+
+      '<div class="grandes"><button type="button" class="ok" data-act="u-ok">✓ Lo hizo</button><button type="button" class="no" data-act="u-no">✗ Falló</button></div>';
+    return;
+  }
+  box.innerHTML=rut.resumen;
+}
+function arrancaRutina(){if(!rut||rut.sel.length<3)return;rut.fase='run';rut.k=0;rut.fallados=[];rut.ini=Date.now();pantallaOn();renderRutina();document.getElementById('rutina').scrollTop=0;}
+function marcaRutina(ok){if(!rut||rut.fase!=='run')return;if(ok){if(state.clic)clicker();}else rut.fallados.push(rut.sel[rut.k]);rut.k++;if(rut.k>=rut.sel.length)terminarRutina();else renderRutina();}
+function terminarRutina(){
+  if(!rut)return;const hechos=rut.k;pantallaOff();
+  if(hechos===0){cerrarRutina();return;}
+  const min=(Date.now()-rut.ini)/60000,fall=rut.fallados.length,completa=hechos>=rut.sel.length;
+  registraDia(min,hechos-fall,hechos);
+  const ru=Object.assign({},state.rutina);ru.ids=rut.sel.slice();if(completa){ru.completas=(ru.completas||0)+1;if(!fall)ru.limpias=(ru.limpias||0)+1;}state.rutina=ru;save();
+  let msg;
+  if(completa&&!fall)msg='Rutina entera a la primera. ¡Premio gordo y a jugar!';
+  else if(completa)msg='Rutina completa con '+fall+(fall===1?' fallo':' fallos')+'. Repasa '+[...new Set(rut.fallados)].map(id=>'«'+POR_ID[id].nombre+'»').join(', ')+' por separado.';
+  else msg='Rutina a medias: '+hechos+' de '+rut.sel.length+'. La próxima vez, prueba con menos trucos.';
+  rut.fase='fin';
+  rut.resumen='<div class="full-top"><div class="t">Rutina terminada<small>'+Math.max(1,Math.round(min))+' min · '+ru.completas+(ru.completas===1?' rutina completa':' rutinas completas')+' en total</small></div><button type="button" class="cerrar" data-act="u-cerrar">Cerrar</button></div><div class="resumen"><div class="res">'+(hechos-fall)+' de '+rut.sel.length+'</div><p>'+esc(msg)+'</p><button type="button" class="prim" data-act="u-start">Otra vez</button><button type="button" data-act="u-elige">Cambiar trucos</button><button type="button" data-act="u-cerrar">Volver</button></div>';
+  renderRutina();
+}
+function cerrarRutina(){pantallaOff();rut=null;document.getElementById('rutina').hidden=true;bloquea();render();}
+
+/* ---------- Salud ---------- */
+function fmt(k){const p=String(k).split('-');return (+p[2])+'/'+(+p[1])+'/'+p[0];}
+function diasHasta(k){return Math.round((fecha(k)-mediodia())/864e5);}
+function cuandoTxt(d){return d<0?('Pasada hace '+(-d)+(d===-1?' día':' días')):d===0?'Toca hoy':d===1?'Mañana':('En '+d+' días');}
+function sumaMeses(k,m){const d=fecha(k),dia=d.getDate();d.setDate(1);d.setMonth(d.getMonth()+m);const ult=new Date(d.getFullYear(),d.getMonth()+1,0).getDate();d.setDate(Math.min(dia,ult));return clave(d);}
+function proximasCitas(){
+  const ult={};
+  state.salud.eventos.forEach(ev=>{const k=ev.tipo+'|'+String(ev.nombre||'').trim().toLowerCase();if(!ult[k]||ev.fecha>ult[k].fecha)ult[k]=ev;});
+  return Object.values(ult).filter(ev=>ev.proxima).map(ev=>({titulo:(TIPOS[ev.tipo]||'Otro')+(ev.nombre?' · '+ev.nombre:''),proxima:ev.proxima,dias:diasHasta(ev.proxima)})).sort((a,b)=>a.dias-b.dias);
+}
+function pesoSVG(ps){
+  if(!ps.length)return '<p class="hist-vacio" style="margin:0">Aún no hay pesos. Apunta el primero aquí abajo.</p>';
+  const W=320,H=150,x0=36,x1=W-12,y0=12,y1=H-24;
+  const kgs=ps.map(p=>p.kg);const lo=Math.floor(Math.min(22,...kgs)-2),hi=Math.ceil(Math.max(32,...kgs)+2);
+  const t0=fecha(ps[0].f).getTime(),t1=fecha(ps[ps.length-1].f).getTime(),span=Math.max(t1-t0,1);
+  const X=p=>ps.length===1?(x0+x1)/2:x0+8+(fecha(p.f).getTime()-t0)/span*(x1-x0-16);
+  const Y=kg=>y1-(kg-lo)/(hi-lo)*(y1-y0);
+  let s='<svg class="peso-svg" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Evolución del peso">';
+  s+='<rect class="banda" x="'+x0+'" y="'+Y(32).toFixed(1)+'" width="'+(x1-x0)+'" height="'+(Y(22)-Y(32)).toFixed(1)+'" rx="4"/>';
+  for(let k=Math.ceil(lo/5)*5;k<=hi;k+=5){s+='<line class="eje" x1="'+x0+'" x2="'+x1+'" y1="'+Y(k).toFixed(1)+'" y2="'+Y(k).toFixed(1)+'"/><text x="0" y="'+(Y(k)+3.5).toFixed(1)+'">'+k+' kg</text>';}
+  s+='<text class="banda-t" x="'+(x0+6)+'" y="'+(Y(22)-5).toFixed(1)+'">Hembra adulta: 22–32 kg</text>';
+  if(ps.length>1)s+='<polyline class="lin" points="'+ps.map(p=>X(p).toFixed(1)+','+Y(p.kg).toFixed(1)).join(' ')+'"/>';
+  ps.forEach((p,i)=>{const u=i===ps.length-1;s+='<circle class="pt'+(u?' u':'')+'" cx="'+X(p).toFixed(1)+'" cy="'+Y(p.kg).toFixed(1)+'" r="'+(u?4.5:3.5)+'"><title>'+fmt(p.f)+': '+String(p.kg).replace('.',',')+' kg</title></circle>';});
+  const u=ps[ps.length-1];s+='<text class="ult" x="'+X(u).toFixed(1)+'" y="'+(Y(u.kg)-9).toFixed(1)+'" text-anchor="'+(ps.length===1?'middle':'end')+'">'+String(u.kg).replace('.',',')+' kg</text>';
+  s+='<text x="'+x0+'" y="'+(H-6)+'">'+fmt(ps[0].f)+'</text>';
+  if(ps.length>1)s+='<text x="'+x1+'" y="'+(H-6)+'" text-anchor="end">'+fmt(u.f)+'</text>';
+  return s+'</svg>';
+}
+function renderSalud(){
+  const hoyK=clave(new Date());
+  ['peso-f','ev-f'].forEach(id=>{const el=document.getElementById(id);if(el&&!el.value)el.value=hoyK;});
+  const cs=proximasCitas();
+  document.getElementById('proximas').innerHTML=cs.length?'<div class="citas">'+cs.slice(0,6).map(c=>'<div class="cita'+(c.dias<0?' vencida':c.dias<=14?' pronto':'')+'"><div><b>'+esc(c.titulo)+'</b><small>'+fmt(c.proxima)+'</small></div><span class="cuando">'+cuandoTxt(c.dias)+'</span></div>').join('')+'</div>':'<p class="hist-vacio">Sin citas apuntadas. Añade abajo la última vacuna o desparasitación con la fecha de la próxima.</p>';
+  const ps=state.salud.pesos.slice().sort((a,b)=>a.f<b.f?-1:1);
+  const hace=ps.length?-diasHasta(ps[ps.length-1].f):0;
+  document.getElementById('peso-graf').innerHTML=(hace>30?'<p class="hint" style="margin:0 0 8px">Hace '+hace+' días que no la pesas. Toca pesarla.</p>':'')+pesoSVG(ps);
+  document.getElementById('peso-lista').innerHTML=ps.length?'<div class="registro">'+ps.slice().reverse().slice(0,6).map(p=>'<div class="reg"><span>'+String(p.kg).replace('.',',')+' kg<small>'+fmt(p.f)+'</small></span><button type="button" class="borrar" data-act="peso-del" data-f="'+esc(p.f)+'">Borrar</button></div>').join('')+'</div>':'';
+  const evs=state.salud.eventos.slice().sort((a,b)=>a.fecha<b.fecha?1:-1);
+  document.getElementById('ev-lista').innerHTML=evs.length?'<div class="registro">'+evs.map(ev=>'<div class="reg"><span>'+esc(TIPOS[ev.tipo]||'Otro')+(ev.nombre?' · '+esc(ev.nombre):'')+'<small>'+fmt(ev.fecha)+(ev.proxima?' · próxima: '+fmt(ev.proxima):'')+'</small></span><button type="button" class="borrar" data-act="ev-del" data-id="'+esc(ev.id)+'">Borrar</button></div>').join('')+'</div>':'';
+}
+function confirma(el){if(el.dataset.ok==='1')return true;el.dataset.ok='1';const txt=el.textContent;el.textContent='¿Seguro?';setTimeout(()=>{if(el.isConnected&&el.dataset.ok==='1'){el.dataset.ok='';el.textContent=txt;}},3500);return false;}
+
+/* ---------- Familia, recordatorio y copia ---------- */
+function renderFamilia(){
+  const box=document.getElementById('familia');if(!box)return;let h;
+  if(!dbNs)h='<p>Disponible cuando abres la app desde tu cuenta de Claude.</p>';
+  else if(modo==='familia')h='<p class="estado-fam">Modo familia activado</p><p>Quien tenga la app con permiso de edición apunta en este mismo cuaderno, y cada sesión queda a nombre de quien la hace.</p>'+(soloLectura?'<p>Tú solo puedes verlo. Pide permiso de edición para apuntar sesiones.</p>':'')+(esDueno?'<div class="botones2"><button type="button" class="btn-prim sec" data-act="fam-off">Volver al cuaderno personal</button></div>':'');
+  else if(esDueno)h='<p>Para que otra persona de casa entrene con ella y sume al mismo progreso:</p><ol><li>Compártele esta app desde el menú Compartir, con permiso para editar.</li><li>Activa aquí el modo familia.</li></ol><div class="botones2"><button type="button" class="btn-prim" data-act="fam-on">Activar modo familia</button></div>';
+  else h='<p>Ahora apuntas en tu propio cuaderno. Para sumar al de la familia, pide a quien te compartió la app que active el modo familia.</p>';
+  box.innerHTML='<div class="fam-box">'+h+'</div>';
+}
+function renderQuien(){
+  const box=document.getElementById('quien');if(!box)return;
+  const tot={},hoy=mediodia();
+  Object.keys(state.diario).forEach(k=>{if((hoy-fecha(k))/864e5>30)return;const por=state.diario[k].por||{};Object.keys(por).forEach(id=>{tot[id]=(tot[id]||0)+por[id];});});
+  const ids=Object.keys(tot).sort((a,b)=>tot[b]-tot[a]);
+  if(!ids.length||!(modo==='familia'||ids.length>1)){box.hidden=true;box.innerHTML='';return;}
+  box.hidden=false;
+  box.innerHTML='<h3>Sesiones de cada uno, últimos 30 días</h3>'+ids.map(id=>'<div class="quien-fila"><span data-uid="'+esc(id)+'">'+(id===miId?'Tú':'…')+'</span><b>'+tot[id]+'</b></div>').join('');
+  if(userNs)userNs.profiles(ids).then(ps=>{box.querySelectorAll('[data-uid]').forEach(sp=>{const p=ps[sp.dataset.uid];if(p)sp.textContent=p.isMe?'Tú':(p.name||'Alguien');});}).catch(()=>{});
+}
+function recLink(){
+  const h=(state.hora||'19:00').split(':'),d=new Date();d.setDate(d.getDate()+1);d.setHours(+h[0]||0,+h[1]||0,0,0);
+  const f=x=>clave(x).replace(/-/g,'')+'T'+String(x.getHours()).padStart(2,'0')+String(x.getMinutes()).padStart(2,'0')+'00';
+  const fin=new Date(d.getTime()+15*60000);let tz='Europe/Madrid';try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||tz;}catch(e){}
+  const n=state.nombre.trim()||'tu pastora';
+  return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent('Entrenar con '+n)+'&dates='+f(d)+'/'+f(fin)+'&ctz='+encodeURIComponent(tz)+'&recur='+encodeURIComponent('RRULE:FREQ=DAILY')+'&details='+encodeURIComponent('2–3 sesiones cortas de 5 minutos. Abre el Cuaderno de '+n+'.');
+}
+function renderRec(){const a=document.getElementById('rec-link'),h=document.getElementById('rec-hora');if(!a||!h)return;if(document.activeElement!==h)h.value=state.hora||'19:00';a.href=recLink();}
+function backup(){
+  const n=(state.nombre.trim()||'pastora').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'pastora';
+  const fn='cuaderno-'+n+'-'+clave(new Date())+'.json';
+  const data=JSON.stringify(Object.assign({app:'cuaderno-pastora',version:5},state),null,2);
+  const lbl=document.getElementById('backup-lbl');
+  const muestra=()=>{const ta=document.getElementById('backup-txt');ta.value=data;ta.hidden=false;ta.focus();ta.select();lbl.innerHTML='Copia el texto de abajo<small>Pégalo en un archivo o en tus notas para guardarlo</small>';};
+  if(!dlNs){muestra();return;}
+  dlNs.save({filename:fn,data}).then(()=>{lbl.innerHTML='Copia descargada<small>'+esc(fn)+'</small>';}).catch(e=>{if(e&&e.code==='declined')return;muestra();});
+}
+let copiaPendiente=null;
+function leeCopia(file){
+  const fr=new FileReader();
+  fr.onload=()=>{
+    let o=null;try{o=JSON.parse(fr.result);}catch(e){}
+    const box=document.getElementById('restaurar-confirm');
+    if(!o||typeof o!=='object'||!o.trucos||typeof o.trucos!=='object'){box.innerHTML='<p class="error-txt">Ese archivo no es una copia del cuaderno. Elige el .json que descargaste desde aquí.</p>';return;}
+    copiaPendiente=normaliza(o);
+    const nd=TRUCOS.filter(x=>(copiaPendiente.trucos[x.id]||{}).estado==='hecho').length,ns=Object.values(copiaPendiente.diario).reduce((x,e)=>x+(e.s||0),0);
+    const cuando=o.actualizado?new Date(o.actualizado).toLocaleDateString('es-ES'):'fecha desconocida';
+    box.innerHTML='<div class="confirmar"><p>Copia del '+esc(cuando)+': '+nd+' trucos dominados y '+ns+' sesiones. Sustituirá todo el progreso actual.</p><div class="botones2"><button type="button" class="btn-prim" data-act="restaura-ok">Sí, recuperar</button><button type="button" class="btn-prim sec" data-act="restaura-no">Cancelar</button></div></div>';
+  };
+  fr.readAsText(file);
+}
+
+/* ---------- Eventos ---------- */
+function tab(n){tabActual=n;['trucos','plan','diario','salud','guia'].forEach(k=>{const on=k===n;document.getElementById('tab-'+k).setAttribute('aria-selected',on);document.getElementById('v-'+k).hidden=!on;});}
+document.addEventListener('click',e=>{
+  const el=e.target.closest('[data-act]');if(!el)return;const act=el.dataset.act;
+  switch(act){
+    case 'abrir':abrir(el.dataset.id);break;
+    case 'volver':cerrar();break;
+    case 'tab':tab(el.dataset.tab);if(el.classList.contains('btn-sm')||el.dataset.ir)document.getElementById('tab-'+el.dataset.tab).scrollIntoView({block:'start'});break;
+    case 'filtro':filtro=el.dataset.f;renderLista();break;
+    case 'semana':state.semana=+el.dataset.n;save();break;
+    case 'estado':if(abierto)setTr(abierto,{estado:el.dataset.e});break;
+    case 'paso':if(abierto){const v=tr(abierto);setTr(abierto,{paso:+el.dataset.i,estado:v.estado==='nuevo'?'curso':v.estado});}break;
+    case 'min':MIN=+el.dataset.m;renderPie();break;
+    case 'go':if(abierto)abrirModo();break;
+    case 'm-ok':if(ses&&ses.fase==='run'){if(state.clic)clicker();ses.a++;ses.seq.push(true);renderModo();}break;
+    case 'm-no':if(ses&&ses.fase==='run'){ses.f++;ses.seq.push(false);renderModo();}break;
+    case 'm-pausa':pausaModo();break;
+    case 'm-fin':terminarModo();break;
+    case 'm-prev':if(ses){const v=tr(ses.id);if(v.paso>0){setTr(ses.id,{paso:v.paso-1},true);ses.seq=[];renderModo();}}break;
+    case 'm-next':if(ses){const t=POR_ID[ses.id],v=tr(ses.id);if(v.paso<t.pasos.length-1){setTr(ses.id,{paso:v.paso+1,estado:v.estado==='nuevo'?'curso':v.estado},true);ses.seq=[];renderModo();}}break;
+    case 'm-sig':if(ses){const v=tr(ses.id);setTr(ses.id,{paso:v.paso+1,estado:v.estado==='nuevo'?'curso':v.estado},true);ses.seq=[];renderModo();}break;
+    case 'm-dom':if(ses){setTr(ses.id,{estado:'hecho'},true);renderModo();}break;
+    case 'r-sig':if(ses){const v=tr(ses.id);setTr(ses.id,{paso:v.paso+1});}cerrarModo();break;
+    case 'r-dom':if(ses)setTr(ses.id,{estado:'hecho'});cerrarModo();break;
+    case 'r-otra':abrirModo();break;
+    case 'r-volver':cerrarModo();break;
+    case 'repaso':abrirRepaso();break;
+    case 'p-start':siguienteRepaso();rep.fase='run';rep.ini=Date.now();renderRepaso();break;
+    case 'p-ok':if(rep&&rep.fase==='run'){if(state.clic)clicker();rep.a++;rep.racha++;siguienteRepaso();renderRepaso();}break;
+    case 'p-no':if(rep&&rep.fase==='run'){rep.f++;rep.racha=0;rep.fallos[rep.actual.id]=(rep.fallos[rep.actual.id]||0)+1;siguienteRepaso();renderRepaso();}break;
+    case 'p-skip':if(rep&&rep.fase==='run'){siguienteRepaso();renderRepaso();}break;
+    case 'p-fin':terminarRepaso();break;
+    case 'p-otra':abrirRepaso();break;
+    case 'p-cerrar':cerrarRepaso();break;
+    case 'ag':agToggle();break;
+    case 'rapida':abrirRapida();break;
+    case 'q-est':setTr(el.dataset.id,{estado:el.dataset.e},true);renderRapida();break;
+    case 'q-cerrar':cerrarRapida();break;
+    case 'copiar':copiar();break;
+    case 'sitio':if(abierto){const ss=tr(abierto).sitios,l=el.dataset.l;setTr(abierto,{sitios:ss.includes(l)?ss.filter(x=>x!==l):ss.concat([l])});}break;
+    case 'lugar':state.lugar=el.dataset.l;save(true);if(ses)renderModo();break;
+    case 'rutina':abrirRutina();break;
+    case 'u-tog':if(rut){const id=el.dataset.id,i=rut.sel.indexOf(id);if(i>=0)rut.sel.splice(i,1);else if(rut.sel.length<6)rut.sel.push(id);renderRutina();}break;
+    case 'u-start':arrancaRutina();break;
+    case 'u-ok':marcaRutina(true);break;
+    case 'u-no':marcaRutina(false);break;
+    case 'u-fin':terminarRutina();break;
+    case 'u-elige':if(rut){rut.fase='elige';renderRutina();}break;
+    case 'u-cerrar':cerrarRutina();break;
+    case 'ev-mas':{const fe=document.getElementById('ev-f').value||clave(new Date());document.getElementById('ev-p').value=sumaMeses(fe,+el.dataset.m);}break;
+    case 'peso-del':if(confirma(el)){state.salud.pesos=state.salud.pesos.filter(p=>p.f!==el.dataset.f);save();}break;
+    case 'ev-del':if(confirma(el)){state.salud.eventos=state.salud.eventos.filter(x=>x.id!==el.dataset.id);save();}break;
+    case 'fam-on':activarFamilia();break;
+    case 'fam-off':if(confirma(el))desactivarFamilia();break;
+    case 'backup':backup();break;
+    case 'restaura-ok':if(copiaPendiente){state=copiaPendiente;copiaPendiente=null;existeRemoto=false;document.getElementById('restaurar-confirm').innerHTML='<p class="ok-txt">Copia recuperada.</p>';save();}break;
+    case 'restaura-no':copiaPendiente=null;document.getElementById('restaurar-confirm').innerHTML='';break;
+  }
+});
+document.addEventListener('change',e=>{
+  const t=e.target;if(!t)return;
+  if(t.id==='clic'){state.clic=!!t.checked;audio();if(state.clic)clicker();save(true);}
+  if(t.id==='solo'&&rep){rep.solo=!!t.checked;}
+  if(t.id==='nacimiento'){state.nacimiento=t.value||'';save();}
+  if(t.id==='rec-hora'&&t.value){state.hora=t.value;save(true);renderRec();}
+  if(t.id==='restaurar'&&t.files&&t.files[0]){leeCopia(t.files[0]);t.value='';}
+});
+document.addEventListener('submit',e=>{
+  const f=e.target;if(!f||!f.id)return;
+  if(f.id==='f-peso'){e.preventDefault();const kg=parseFloat(String(document.getElementById('peso-kg').value).replace(',','.')),fe=document.getElementById('peso-f').value;if(!(kg>0&&kg<120)||!fe)return;state.salud.pesos=state.salud.pesos.filter(p=>p.f!==fe).concat([{f:fe,kg:Math.round(kg*10)/10}]).sort((a,b)=>a.f<b.f?-1:1).slice(-60);document.getElementById('peso-kg').value='';save();}
+  if(f.id==='f-ev'){e.preventDefault();const fe=document.getElementById('ev-f').value;if(!fe)return;const ev={id:'e'+Date.now().toString(36),tipo:document.getElementById('ev-tipo').value,nombre:document.getElementById('ev-nombre').value.trim().slice(0,40),fecha:fe,proxima:document.getElementById('ev-p').value||''};state.salud.eventos=state.salud.eventos.concat([ev]).slice(-80);document.getElementById('ev-nombre').value='';document.getElementById('ev-p').value='';save();}
+});
+let ntimer=null,notaTimer=null;
+document.addEventListener('input',e=>{
+  const t=e.target;if(!t)return;
+  if(t.id==='nombre'){const val=t.value.slice(0,20);document.getElementById('titulo').textContent=val.trim()?('Cuaderno de '+val.trim()):'Cuaderno de tu pastora';clearTimeout(ntimer);ntimer=setTimeout(()=>{state.nombre=val;save(true);},500);}
+  if(t.id==='nota'&&abierto){const id=abierto,val=t.value.slice(0,1500);clearTimeout(notaTimer);notaTimer=setTimeout(()=>{state.trucos[id]=Object.assign(tr(id),{nota:val});save(true);},600);}
+});
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Escape')return;
+  if(!document.getElementById('rapida').hidden)cerrarRapida();
+  else if(!document.getElementById('modo').hidden){if(ses&&ses.fase==='fin')cerrarModo();else terminarModo();}
+  else if(!document.getElementById('repaso').hidden){if(rep&&rep.fase==='run')terminarRepaso();else cerrarRepaso();}
+  else if(!document.getElementById('rutina').hidden){if(rut&&rut.fase==='run')terminarRutina();else cerrarRutina();}
+  else if(abierto)cerrar();
+});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&((ses&&ses.corre)||(rep&&rep.fase==='run')||(rut&&rut.fase==='run'))){wl=null;pantallaOn();}});
+
+lsLoad();render();conectar();
+const ancla=(location.hash||'').slice(1);
+if(ancla&&POR_ID[ancla]&&TRUCOS.includes(POR_ID[ancla]))abrir(ancla);
+else if(['plan','diario','salud','guia'].includes(ancla))tab(ancla);
+})();
+</script>
